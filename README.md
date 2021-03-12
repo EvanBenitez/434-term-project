@@ -1,9 +1,9 @@
 # 434-term-project
 Tic-Tac-Toe Game
 
-Term Project: Tic Tac Toe
-Group #1
-Members:
-Chayim Adler
-Evan Benitz
-Peter Pernacki
+Term Project: Tic Tac Toe <br />
+Group #1<br />
+Members:<br />
+Chayim Adler<br />
+Evan Benitz<br />
+Peter Pernacki<br />
