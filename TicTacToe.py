@@ -21,6 +21,14 @@ class Board:
                 raise ValueError("Must input either 'X' or 'O'")
         else:
             raise ValueError("Row and Column must be between 0 and 2 inclusive")
+    
+    # remove a marker
+    # this is untested
+    def remove(self, row, col):
+        if type(row) is int and type(col) is int and 0<=row<3 and 0<=col<3:
+            self.grid[row][col]='B'
+        else:
+            print("invalid grid location; no action taken")
             
     # Print board, for debuging puposes
     def print_board(self):
