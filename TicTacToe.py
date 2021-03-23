@@ -50,15 +50,26 @@ class GUI:
     def __init__(self):
         self.size = (750,500) # dimensions of the window
         self.background = (240,240,240) # background color of the window
-        self.game_button = pygame.Rect(25,25,75,35) # attributes of the game button
+        
+        # add GUI interactable items in dictionary
+        self.objects = {} # dictionary for storying clickable items
+        self.objects["game_button"] = pygame.Rect(25,25,75,35) # attributes of the game button
+        
         self.line_color = (0,0,0) # color of button outline
         self.draw_color = (0,0,0) # color of shaps and text
         
         # create text images
         # create text for game button
         font = pygame.font.SysFont(None,24)
+        label_font = pygame.font.SysFont(None, 50)
         self.game_text = font.render('Game',True, self.draw_color)
         self.game_text_location = (38,35)
+        # create text for X label
+        self.text_X = label_font.render('X',True, self.draw_color)
+        self.text_X_location = (250,25)
+         # create text for Y label
+        self.text_Y = label_font.render('Y',True, self.draw_color)
+        self.text_Y_location = (500,25)
     
     # start the gui window
     def start_gui(self):
@@ -70,9 +81,25 @@ class GUI:
         self.screen.fill(self.background)
         
         # draw stuff on screen
-        pygame.draw.rect(self.screen,self.line_color,self.game_button, 1)
+        pygame.draw.rect(self.screen,self.line_color,self.objects["game_button"], 1)
         self.screen.blit(self.game_text, self.game_text_location)
         pygame.display.flip()
+        
+    # draws grid for the given board with win totals
+    def draw_board_score(self, board, X_win, O_win):
+        
+        # constants
+        line_level = 60
+        thickness = 4
+        
+        # draw label line
+        pygame.draw.line(self.screen,self.draw_color, (237, line_level), (285, line_level), thickness)
+        pygame.draw.line(self.screen,self.draw_color, (488, line_level), (535, line_level), thickness)
+        
+        # print X and O label
+        self.screen.blit(self.text_X, self.text_X_location)
+        self.screen.blit(self.text_Y, self.text_Y_location)
+        self.draw_board(board)
         
     # draws grid for the given board
     def draw_board(self, board):
@@ -81,10 +108,10 @@ class GUI:
         box_size = 100 # size of each grid spot
         thickness = 10 #thickness of board line
         length = 3*box_size + 2*thickness #length of board line
-        top_bound = 125 # bound of the top border
+        top_bound = 150 # bound of the top border
         left_bound = 225 # bound of the left border
-        x_base = left_bound + box_size/2 # x coordinate marker starting position
-        y_base = top_bound + box_size/2 # y coordinate marker starting position
+        x_base = int(left_bound + box_size/2) # x coordinate marker starting position
+        y_base = int(top_bound + box_size/2) # y coordinate marker starting position
         offset = box_size + thickness # offset for markers
         char_bound = 35 # defines the size of markers
         char_thickness = 10
@@ -134,7 +161,7 @@ def main():
     B.place(2,2,'O')
     B.place(1,1,'X')
     B.place(0,2,'O')
-    gui.draw_board(B)
+    gui.draw_board_score(B,0,0)
     
     # endo of testing code ----------------
     
