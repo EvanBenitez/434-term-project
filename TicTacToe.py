@@ -6,6 +6,9 @@ Created on Fri Mar 12 13:10:18 2021
 """
 import pygame
 
+objects = {}  # dictionary for storying clickable items
+
+
 # Class element for the Board component
 class Board:
     #create grid and initialize with 'B' for blank
@@ -52,8 +55,7 @@ class GUI:
         self.background = (240,240,240) # background color of the window
         
         # add GUI interactable items in dictionary
-        self.objects = {} # dictionary for storying clickable items
-        self.objects["game_button"] = pygame.Rect(25,25,75,35) # attributes of the game button
+        objects["game_button"] = pygame.Rect(25,25,75,35) # attributes of the game button
         
         self.line_color = (0,0,0) # color of button outline
         self.draw_color = (0,0,0) # color of shaps and text
@@ -81,7 +83,7 @@ class GUI:
         self.screen.fill(self.background)
         
         # draw stuff on screen
-        pygame.draw.rect(self.screen,self.line_color,self.objects["game_button"], 1)
+        pygame.draw.rect(self.screen,self.line_color,objects["game_button"], 1)
         self.screen.blit(self.game_text, self.game_text_location)
         pygame.display.flip()
         
@@ -145,6 +147,8 @@ class GUI:
         # draw board
         pygame.display.flip()
 
+
+
 # function for the main loop
 def main():
     
@@ -154,20 +158,22 @@ def main():
     #create the GUI
     gui = GUI()
     gui.start_gui()
-    
+    display = pygame.display
+    myfont = pygame.font.SysFont(None,24)
+
     # testing code-------------------------
     B = Board()
-    B.place(0,0,'X')
+    B.place(0,0,'O')
     B.place(2,2,'O')
     B.place(1,1,'X')
     B.place(0,2,'O')
-    gui.draw_board_score(B,0,0)
-    
+    gui.draw_board_score(B,1,1)
     # endo of testing code ----------------
     
     # contrls the main loop
     running = True;
-    
+    menu = False
+    outline = 1
     # main loop
     while running:
         # get all events from the event queue
@@ -175,7 +181,72 @@ def main():
             # QUIT event handler
             if event.type == pygame.QUIT:
                 running = False
-    
+                pygame.display.quit()
+                pygame.quit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN :
+                mouse_poistion = pygame.mouse.get_pos()
+
+                if objects["game_button"].collidepoint(mouse_poistion) and menu == False:
+                    pygame.draw.rect(gui.screen, (230, 230, 230), (12, 100, 200, 300))
+
+                    NewGame = myfont.render('New game', True, (0, 0, 0))
+                    gui.screen.blit(NewGame, (70, 106))
+
+                    pygame.draw.line(gui.screen, (0,0,0), (12, 127), (210, 127))
+
+                    Best = myfont.render('Best:', True, (0, 0, 0))
+                    gui.screen.blit(Best, (15, 130))
+
+                    of1 = myfont.render('1 of 1', True, (0, 0, 0))
+                    gui.screen.blit(of1, (25, 150))
+
+                    of3 = myfont.render('2 of 3', True, (0, 0, 0))
+                    gui.screen.blit(of3, (25, 170))
+
+                    of5 = myfont.render('3 of 5', True, (0, 0, 0))
+                    gui.screen.blit(of5, (25, 190))
+
+                    of7 = myfont.render('4 of 7', True, (0, 0, 0))
+                    gui.screen.blit(of7, (25, 210))
+
+                    pygame.draw.line(gui.screen, (0,0,0), (12, 235), (210, 235))
+
+                    playervplayer = myfont.render('Player vs. Player', True, (0, 0, 0))
+                    gui.screen.blit(playervplayer, (47, 240))
+
+                    pygame.draw.line(gui.screen, (0,0,0), (12, 261), (210, 261))
+
+                    playervpc = myfont.render('Player vs. PC', True, (0, 0, 0))
+                    gui.screen.blit(playervpc, (56, 267))
+
+                    pygame.draw.line(gui.screen, (0,0,0), (12, 289), (210, 289))
+
+                    difficultyLabel = myfont.render('Difficulty:', True, (0, 0, 0))
+                    gui.screen.blit(difficultyLabel, (15, 300))
+
+                    easyLabel = myfont.render('Easy', True, (0, 0, 0))
+                    gui.screen.blit(easyLabel, (19, 317))
+
+                    hardLabel = myfont.render('Hard', True, (0, 0, 0))
+                    gui.screen.blit(hardLabel, (19, 335))
+
+                    pygame.draw.line(gui.screen, (0,0,0), (12, 370), (210, 370))
+
+                    hardLabel = myfont.render('Quit!', True, (0, 0, 0))
+                    gui.screen.blit(hardLabel, (90, 375))
+
+                    pygame.display.flip()
+                    menu = True
+
+                elif objects["game_button"].collidepoint(mouse_poistion) and menu == True:
+                    pygame.draw.rect(gui.screen, gui.background, pygame.Rect(12, 100, 200, 300), )
+                    pygame.display.flip()
+                    menu = False
+
+
+
+
 
     
     
