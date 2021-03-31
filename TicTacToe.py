@@ -40,6 +40,8 @@ class Board:
             for col in row:
                 print(col + " ", end="")
             print()
+            
+# Computer Player
 class Computer_Player:
     #easy
     #pick a spot in the grid at random until there is an empty spot
@@ -51,7 +53,7 @@ class Computer_Player:
                 self.grid[i][j] = 'X'
                 computer_turn = False
 
-    #difficult
+    #hard
     def hard(self):
         while computer_turn == True:
             #computer to check if it can win, if can win, wins
