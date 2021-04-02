@@ -483,7 +483,8 @@ class GUI:
     # display menu
     # best_option to denote which best of option is selected either 1,2,3,4
     # pc_option to denote if pc_option is selected
-    def show_menu(self, best_option=1, pc_option=False):
+    # diff to indocate pc difficulty 1 easy, 2 hard
+    def show_menu(self, best_option=1, pc_option=False, diff=0):
 
         if self.menu == False:
             pygame.draw.rect(self.screen, self.menu_color, self.main_menu)
@@ -514,6 +515,10 @@ class GUI:
                 self.screen.blit(self.easyLabel, self.loc_easy)
                 self.screen.blit(self.hardLabel, self.loc_hard)
                 self.checkmark(self.loc_playervspc[0]+160, self.loc_playervspc[1]+12)
+                if diff == 1:
+                    self.checkmark(self.loc_easy[0]+175, self.loc_easy[1]+12)
+                elif diff == 2:
+                    self.checkmark(self.loc_hard[0]+175, self.loc_hard[1]+12)
             else:
                 self.screen.blit(self.light_difficultyLabel, self.loc_diff)
                 self.screen.blit(self.light_easyLabel, self.loc_easy)
@@ -599,7 +604,7 @@ def main():
 
                 if gui.click_item(mouse_position) == "game_button":
                     if Xwins % 2 == 0:
-                        gui.show_menu(Xwins%4+1,True)
+                        gui.show_menu(Xwins%4+1,True, 2)
                     else:
                         gui.show_menu(Xwins%4+1,False)
 
@@ -624,3 +629,4 @@ if __name__ == "__main__":
     #     print("Enter a valid grid location")
 
     main()
+
