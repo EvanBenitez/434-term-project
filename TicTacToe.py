@@ -46,16 +46,13 @@ class Computer_Player:
     #easy
     #pick a spot in the grid at random until there is an empty spot
     def easy(self):
-        while computer_turn == True:
             i = randInt(0,2)
             j = randInt(0,2)
             if self.grid[i][j] == 'B':
                 self.grid[i][j] = 'X'
-                computer_turn = False
 
     #hard
     def hard(self):
-        while computer_turn == True:
             #computer to check if it can win, if can win, wins
             if self.grid[0][0] == 'X' and self.grid[0][2] == 'X' and self.grid[0][1] == 'B':
                 self.grid[0][1] = 'X'
@@ -81,7 +78,7 @@ class Computer_Player:
                 elif self.grid[2][2] == 'X' and self.grid[0][0] == 'B':
                     self.grid[0][0] = 'X'
                 elif self.grid[0][2] == 'X' and self.grid[2][0] == 'B':
-                    self,grid[2][0] = 'X'
+                    self.grid[2][0] = 'X'
                 elif self.grid[2][0] == 'X' and self.grid[0][2] == 'B':
                     self.grid[0][2] = 'X'
             elif self.grid[0][0] == 'O' and self.grid[2][2] == 'O' and self.grid[1][1] == 'B':
@@ -120,7 +117,7 @@ class Computer_Player:
                 elif self.grid[2][2] == 'O' and self.grid[0][0] == 'B':
                     self.grid[0][0] = 'X'
                 elif self.grid[0][2] == 'O' and self.grid[2][0] == 'B':
-                    self,grid[2][0] = 'X'
+                    self.grid[2][0] = 'X'
                 elif self.grid[2][0] == 'O' and self.grid[0][2] == 'B':
                     self.grid[0][2] = 'X'
             elif self.grid[0][0] == 'O' and self.grid[2][2] == 'O' and self.grid[1][1] == 'B':
@@ -137,6 +134,14 @@ class Computer_Player:
             #computer to make a non winning or blocking move
             elif self.grid[0][0] == 'B':
                 self.grid[0][0] = 'X'
+            elif self.grid[0][0] == 'O' and self.grid[1][1] == 'B':
+                self.grid[1][1] == 'X'
+            elif self.grid[0][2] == 'O' and self.grid[1][1] == 'B':
+                self.grid[1][1] == 'X'
+            elif self.grid[2][0] == 'O' and self.grid[1][1] == 'B':
+                self.grid[1][1] == 'X'
+            elif self.grid[2][2] == 'O' and self.grid[1][1] == 'B':
+                self.grid[1][1] == 'X'
             elif self.grid[1][1] == 'B':
                 self.grid[1][1] == 'X'
             elif self.grid[2][0] == 'B':
@@ -154,7 +159,6 @@ class Computer_Player:
             elif self.grid[1][2] == 'B':
                 self.grid[1][2] = 'X'
 
-            computer_turn = False
 # class element for Game element
 class Game:
     pass
