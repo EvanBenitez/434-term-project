@@ -45,7 +45,7 @@ class Board:
 
 # Computer Player
 class Computer_Player:
-        
+
     # easy
     # pick a spot in the grid at random until there is an empty spot
     def easy(self):
@@ -161,80 +161,93 @@ class Computer_Player:
 
 
 # class element for Game element
-class Game(Board):
+class Game():
+
+    def __init__(self):
+        self.xWinsCount = 0
+        self.oWinsCount = 0
 
     def winTracker(self):
+        B = Board()
+        B.place(0, 0, 'x')
+        B.place(0, 1, 'x')
+        B.place(0, 2, 'x')
+        B.place(1, 1, 'O')
+        B.place(1, 2, 'o')
+        B.place(1, 0, 'o')
         xwin = False
         owin = False
         # top row X
-        if self.grid[0][0] == 'X' and self.grid[0][1] == 'X' and self.grid[0][2] == 'X':
+        if B.grid[0][0] == 'X' and B.grid[0][1] == 'X' and B.grid[0][2] == 'X':
             xwin = True
 
         # middle row X
-        elif self.grid[1][0] == 'X' and self.grid[1][1] == 'X' and self.grid[1][2] == 'X':
+        elif B.grid[1][0] == 'X' and B.grid[1][1] == 'X' and B.grid[1][2] == 'X':
             xwin = True
 
         # bottom row X
-        elif self.grid[2][0] == 'X' and self.grid[2][1] == 'X' and self.grid[2][2] == 'X':
+        elif B.grid[2][0] == 'X' and B.grid[2][1] == 'X' and B.grid[2][2] == 'X':
             xwin = True
 
         # left column X
-        elif self.grid[0][0] == 'X' and self.grid[1][0] == 'X' and self.grid[2][0] == 'X':
+        elif B.grid[0][0] == 'X' and B.grid[1][0] == 'X' and B.grid[2][0] == 'X':
             xwin = True
 
         # middle column X
-        elif self.grid[0][1] == 'X' and self.grid[1][1] == 'X' and self.grid[2][1] == 'X':
+        elif B.grid[0][1] == 'X' and B.grid[1][1] == 'X' and B.grid[2][1] == 'X':
             xwin = True
 
         # right column X
-        elif self.grid[0][2] == 'X' and self.grid[1][2] == 'X' and self.grid[2][2] == 'X':
+        elif B.grid[0][2] == 'X' and B.grid[1][2] == 'X' and B.grid[2][2] == 'X':
             xwin = True
 
         # top left to bottom right diagonal X
-        elif self.grid[0][0] == 'X' and self.grid[1][1] == 'X' and self.grid[2][2] == 'X':
+        elif B.grid[0][0] == 'X' and B.grid[1][1] == 'X' and B.grid[2][2] == 'X':
             xwin = True
 
         # top right to bottom left diagonal X
-        elif self.grid[0][2] == 'X' and self.grid[1][1] == 'X' and self.grid[2][0] == 'X':
+        elif B.grid[0][2] == 'X' and B.grid[1][1] == 'X' and B.grid[2][0] == 'X':
             xwin = True
 
         # top row O
-        elif self.grid[0][0] == 'O' and self.grid[0][1] == 'O' and self.grid[0][2] == 'O':
+        elif B.grid[0][0] == 'O' and B.grid[0][1] == 'O' and B.grid[0][2] == 'O':
             owin = True
 
         # middle row O
-        elif self.grid[1][0] == 'O' and self.grid[1][1] == 'O' and self.grid[1][2] == 'O':
+        elif B.grid[1][0] == 'O' and B.grid[1][1] == 'O' and B.grid[1][2] == 'O':
             owin = True
 
         # bottom row O
-        elif self.grid[2][0] == 'O' and self.grid[2][1] == 'O' and self.grid[2][2] == 'O':
+        elif B.grid[2][0] == 'O' and B.grid[2][1] == 'O' and B.grid[2][2] == 'O':
             owin = True
 
         # left column O
-        elif self.grid[0][0] == 'O' and self.grid[1][0] == 'O' and self.grid[2][0] == 'O':
+        elif B.grid[0][0] == 'O' and B.grid[1][0] == 'O' and B.grid[2][0] == 'O':
             owin = True
 
         # middle column O
-        elif self.grid[0][1] == 'O' and self.grid[1][1] == 'O' and self.grid[2][1] == 'O':
+        elif B.grid[0][1] == 'O' and B.grid[1][1] == 'O' and B.grid[2][1] == 'O':
             owin = True
 
         # right column O
-        elif self.grid[0][2] == 'O' and self.grid[1][2] == 'O' and self.grid[2][2] == 'O':
+        elif B.grid[0][2] == 'O' and B.grid[1][2] == 'O' and B.grid[2][2] == 'O':
             owin = True
 
         # top left to bottom right diagonal 0
-        elif self.grid[0][0] == 'O' and self.grid[1][1] == 'O' and self.grid[2][2] == 'O':
+        elif B.grid[0][0] == 'O' and B.grid[1][1] == 'O' and B.grid[2][2] == 'O':
             owin = True
 
         # top right to bottom left diagonal 0
-        elif self.grid[0][2] == 'O' and self.grid[1][1] == 'O' and self.grid[2][0] == 'O':
+        elif B.grid[0][2] == 'O' and B.grid[1][1] == 'O' and B.grid[2][0] == 'O':
             owin = True
 
         if owin is True:
             print("Hey now!")
+            self.oWinsCount += 1
 
         if xwin is True:
             print("Win!")
+            self.xWinsCount += 1
 
 
 # contols the graphical content of the game
@@ -250,7 +263,7 @@ class GUI:
 
         # set colors
         self.line_color = (0, 0, 0)  # color of button outline and text
-        self.light_text = (180,180,180) # color for grayed options
+        self.light_text = (180, 180, 180)  # color for grayed options
         self.draw_color = (0, 0, 0)  # color of shapes and text
 
         # create text images
@@ -285,7 +298,7 @@ class GUI:
         self.light_difficultyLabel = font.render('Difficulty:', True, self.light_text)
         self.light_easyLabel = font.render('Easy', True, self.light_text)
         self.light_hardLabel = font.render('Hard', True, self.light_text)
-        
+
         self.quitLabel = font.render('Quit!', True, self.line_color)
 
         # menu label dimensions
@@ -514,45 +527,44 @@ class GUI:
                 self.screen.blit(self.difficultyLabel, self.loc_diff)
                 self.screen.blit(self.easyLabel, self.loc_easy)
                 self.screen.blit(self.hardLabel, self.loc_hard)
-                self.checkmark(self.loc_playervspc[0]+160, self.loc_playervspc[1]+12)
+                self.checkmark(self.loc_playervspc[0] + 160, self.loc_playervspc[1] + 12)
                 if diff == 1:
-                    self.checkmark(self.loc_easy[0]+175, self.loc_easy[1]+12)
+                    self.checkmark(self.loc_easy[0] + 175, self.loc_easy[1] + 12)
                 elif diff == 2:
-                    self.checkmark(self.loc_hard[0]+175, self.loc_hard[1]+12)
+                    self.checkmark(self.loc_hard[0] + 175, self.loc_hard[1] + 12)
             else:
                 self.screen.blit(self.light_difficultyLabel, self.loc_diff)
                 self.screen.blit(self.light_easyLabel, self.loc_easy)
                 self.screen.blit(self.light_hardLabel, self.loc_hard)
-                self.checkmark(self.loc_playervsplayer[0]+160, self.loc_playervsplayer[1]+12)
+                self.checkmark(self.loc_playervsplayer[0] + 160, self.loc_playervsplayer[1] + 12)
 
             pygame.draw.line(self.screen, self.line_color, self.loc_line5[0], self.loc_line5[1])
 
             self.screen.blit(self.quitLabel, self.loc_quit)
-            
+
             # check best of box
             if best_option == 1:
-                self.checkmark(self.loc_of1[0]+170, self.loc_of1[1]+12)
+                self.checkmark(self.loc_of1[0] + 170, self.loc_of1[1] + 12)
             elif best_option == 2:
-                self.checkmark(self.loc_of3[0]+170, self.loc_of3[1]+12)
+                self.checkmark(self.loc_of3[0] + 170, self.loc_of3[1] + 12)
             elif best_option == 3:
-                self.checkmark(self.loc_of5[0]+170, self.loc_of5[1]+12)
+                self.checkmark(self.loc_of5[0] + 170, self.loc_of5[1] + 12)
             elif best_option == 4:
-                self.checkmark(self.loc_of7[0]+170, self.loc_of7[1]+12)
-                
+                self.checkmark(self.loc_of7[0] + 170, self.loc_of7[1] + 12)
+
             pygame.display.flip()
             self.menu = True
         else:
             pygame.draw.rect(self.screen, self.background, self.main_menu)
             pygame.display.flip()
             self.menu = False
-    
+
     # auxilary function for placing checkmarks
     def checkmark(self, x, y):
         mark_size = 5
         thickness = 3
-        pygame.draw.line(self.screen, self.line_color,(x-mark_size, y-mark_size), (x,y), thickness)
-        pygame.draw.line(self.screen, self.line_color,(x+2*mark_size, y-2*mark_size), (x,y), thickness)
-
+        pygame.draw.line(self.screen, self.line_color, (x - mark_size, y - mark_size), (x, y), thickness)
+        pygame.draw.line(self.screen, self.line_color, (x + 2 * mark_size, y - 2 * mark_size), (x, y), thickness)
 
 
 # function for the main loop
@@ -563,19 +575,12 @@ def main():
     # create the GUI
     gui = GUI()
     gui.start_gui()
-    G = Game
+    G = Game()
 
     display = pygame.display
 
     # testing code-------------------------
     B = Board()
-    B.place(0, 0, 'x')
-    B.place(0, 1, 'x')
-    B.place(0, 2, 'x')
-    B.place(1, 1, 'O')
-    B.place(1, 2, 'o')
-    B.place(1, 0, 'o')
-
 
     Xwins = 0
     Ywins = 0
@@ -597,16 +602,16 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos()
-                G.winTracker(B)
-                Xwins +=1
-                Ywins +=1
+                G.winTracker()
+                Xwins += 1
+                Ywins += 1
                 gui.draw_board_score(B, Xwins, Ywins)
 
                 if gui.click_item(mouse_position) == "game_button":
                     if Xwins % 2 == 0:
-                        gui.show_menu(Xwins%4+1,True, 2)
+                        gui.show_menu(Xwins % 4 + 1, True, 2)
                     else:
-                        gui.show_menu(Xwins%4+1,False)
+                        gui.show_menu(Xwins % 4 + 1, False)
 
 
 if __name__ == "__main__":
