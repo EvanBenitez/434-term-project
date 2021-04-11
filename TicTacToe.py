@@ -161,84 +161,84 @@ class Computer_Player:
 
 
 # class element for Game element
-class Game():
+class Game:
 
     def __init__(self):
         self.xWinsCount = 0
         self.oWinsCount = 0
+        self.B = Board()
+        self.currentWinner = ''
+        self.xCounter = 0
+        self.oCounter = 0
+        self.turn = ''
+
 
     def winTracker(self):
-        B = Board()
-        B.place(0, 0, 'x')
-        B.place(0, 1, 'x')
-        B.place(0, 2, 'x')
-        B.place(1, 1, 'O')
-        B.place(1, 2, 'o')
-        B.place(1, 0, 'o')
+
         xwin = False
         owin = False
         # top row X
-        if B.grid[0][0] == 'X' and B.grid[0][1] == 'X' and B.grid[0][2] == 'X':
+        if self.B.grid[0][0] == 'X' and self.B.grid[0][1] == 'X' and self.B.grid[0][2] == 'X':
             xwin = True
 
         # middle row X
-        elif B.grid[1][0] == 'X' and B.grid[1][1] == 'X' and B.grid[1][2] == 'X':
+        elif self.B.grid[1][0] == 'X' and self.B.grid[1][1] == 'X' and self.B.grid[1][2] == 'X':
             xwin = True
 
-        # bottom row X
-        elif B.grid[2][0] == 'X' and B.grid[2][1] == 'X' and B.grid[2][2] == 'X':
+        # self.bottom row X
+        elif self.B.grid[2][0] == 'X' and self.B.grid[2][1] == 'X' and self.B.grid[2][2] == 'X':
             xwin = True
 
         # left column X
-        elif B.grid[0][0] == 'X' and B.grid[1][0] == 'X' and B.grid[2][0] == 'X':
+        elif self.B.grid[0][0] == 'X' and self.B.grid[1][0] == 'X' and self.B.grid[2][0] == 'X':
             xwin = True
 
         # middle column X
-        elif B.grid[0][1] == 'X' and B.grid[1][1] == 'X' and B.grid[2][1] == 'X':
+        elif self.B.grid[0][1] == 'X' and self.B.grid[1][1] == 'X' and self.B.grid[2][1] == 'X':
             xwin = True
 
         # right column X
-        elif B.grid[0][2] == 'X' and B.grid[1][2] == 'X' and B.grid[2][2] == 'X':
+        elif self.B.grid[0][2] == 'X' and self.B.grid[1][2] == 'X' and self.B.grid[2][2] == 'X':
             xwin = True
 
         # top left to bottom right diagonal X
-        elif B.grid[0][0] == 'X' and B.grid[1][1] == 'X' and B.grid[2][2] == 'X':
+        elif self.B.grid[0][0] == 'X' and self.B.grid[1][1] == 'X' and self.B.grid[2][2] == 'X':
             xwin = True
 
         # top right to bottom left diagonal X
-        elif B.grid[0][2] == 'X' and B.grid[1][1] == 'X' and B.grid[2][0] == 'X':
+        elif self.B.grid[0][2] == 'X' and self.B.grid[1][1] == 'X' and self.B.grid[2][0] == 'X':
             xwin = True
 
         # top row O
-        elif B.grid[0][0] == 'O' and B.grid[0][1] == 'O' and B.grid[0][2] == 'O':
+        elif self.B.grid[0][0] == 'O' and self.B.grid[0][1] == 'O' and self.B.grid[0][2] == 'O':
             owin = True
 
         # middle row O
-        elif B.grid[1][0] == 'O' and B.grid[1][1] == 'O' and B.grid[1][2] == 'O':
+        elif self.B.grid[1][0] == 'O' and self.B.grid[1][1] == 'O' and self.B.grid[1][2] == 'O':
             owin = True
 
-        # bottom row O
-        elif B.grid[2][0] == 'O' and B.grid[2][1] == 'O' and B.grid[2][2] == 'O':
+        # self.bottom row O
+        elif self.B.grid[2][0] == 'O' and self.B.grid[2][1] == 'O' and self.B.grid[2][2] == 'O':
             owin = True
 
         # left column O
-        elif B.grid[0][0] == 'O' and B.grid[1][0] == 'O' and B.grid[2][0] == 'O':
+        elif self.B.grid[0][0] == 'O' and self.B.grid[1][0] == 'O' and self.B.grid[2][0] == 'O':
             owin = True
 
         # middle column O
-        elif B.grid[0][1] == 'O' and B.grid[1][1] == 'O' and B.grid[2][1] == 'O':
+        elif self.B.grid[0][1] == 'O' and self.B.grid[1][1] == 'O' and self.B.grid[2][1] == 'O':
             owin = True
 
         # right column O
-        elif B.grid[0][2] == 'O' and B.grid[1][2] == 'O' and B.grid[2][2] == 'O':
+        elif self.B.grid[0][2] == 'O' and self.B.grid[1][2] == 'O' and self.B.grid[2][2] == 'O':
             owin = True
 
         # top left to bottom right diagonal 0
-        elif B.grid[0][0] == 'O' and B.grid[1][1] == 'O' and B.grid[2][2] == 'O':
+        elif self.B.grid[0][0] == 'O' and self.B.grid[1][1] == 'O' and self.B.grid[2][2] == 'O':
             owin = True
 
         # top right to bottom left diagonal 0
-        elif B.grid[0][2] == 'O' and B.grid[1][1] == 'O' and B.grid[2][0] == 'O':
+        elif self.B.grid[0][2] == 'O' and self.B.grid[1][1] == 'O' and self.B.grid[2][0] == 'O':
             owin = True
 
         if owin is True:
@@ -249,10 +249,45 @@ class Game():
             print("Win!")
             self.xWinsCount += 1
 
+    def turnTracker(self):
+        for i in self.B.grid:
+            for j in self.B.grid:
+                if self.B.grid[i][j] == 'X':
+                    self.xCounter += 1
+                elif self.B.grid[i][j] == 'O':
+                    self.oCounter += 1
+
+        if self.xCounter < self.oCounter:
+            self.turn = 'X'
+        elif self.oCounter < self.xCounter:
+            self.turn = 'O'
+
+
+    def winComparator(self):
+
+        if self.xWinsCount < self.oWinsCount:
+            self.currentWinner = 'O'
+
+        elif self.xWinsCount > self.oWinsCount:
+            self.currentWinner = 'X'
+
+        elif self.xWinsCount == 0 and self.oWinsCount == 0:
+            self.currentWinner = 'N'
+
+        elif self.xWinsCount == self.oWinsCount:
+            self.currentWinner = 'D'
+
+    def placer(self):
+
+        if self.turn == 'X':
+           self.B.place()
+
+        elif self.turn == 'O':
+            self.B.place()
+
 
 # contols the graphical content of the game
 class GUI:
-
     # initialize
     def __init__(self):
         # set flags to False
@@ -497,7 +532,7 @@ class GUI:
     # best_option to denote which best of option is selected either 1,2,3,4
     # pc_option to denote if pc_option is selected
     # diff to indocate pc difficulty 1 easy, 2 hard
-    def show_menu(self, best_option=1, pc_option=False, diff=0):
+    def show_menu(self, best_option=    1, pc_option=False, diff=0):
 
         if self.menu == False:
             pygame.draw.rect(self.screen, self.menu_color, self.main_menu)
