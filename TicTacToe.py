@@ -171,7 +171,7 @@ class Game:
         self.xCounter = 0
         self.oCounter = 0
         self.turn = ''
-
+        self.postCoordinates = []
 
     def winTracker(self):
 
@@ -277,14 +277,25 @@ class Game:
         elif self.xWinsCount == self.oWinsCount:
             self.currentWinner = 'D'
 
-    def placer(self):
+    def placer(self, mousePosition):
+        # this needs to get changed cause i dont REALLY know how to handle mouse input outside of main
+        for item in self.objects:
+            if self.objects[item][0].collidepoint(mousePosition):
+                if self.B is True and self.objects[item][1] == 2:
+                    preCoordinates = objects.get(item)
+                    self.postCoordinates = preCoordinates.split(",")
 
         if self.turn == 'X':
-           self.B.place()
+            self.B.place(self.postCoordinates[0], self.postCoordinates[1], "X")
 
         elif self.turn == 'O':
-            self.B.place()
+            self.B.place(self.postCoordinates[0], self.postCoordinates[1], "O")
+        self.winTracker()
 
+    def reprint(self):
+        self.B.grid = [['B', 'B', 'B'], \
+                     ['B', 'B', 'B'], \
+                     ['B', 'B', 'B']]
 
 # contols the graphical content of the game
 class GUI:
@@ -531,8 +542,8 @@ class GUI:
     # display menu
     # best_option to denote which best of option is selected either 1,2,3,4
     # pc_option to denote if pc_option is selected
-    # diff to indocate pc difficulty 1 easy, 2 hard
-    def show_menu(self, best_option=    1, pc_option=False, diff=0):
+    # diff to indicate pc difficulty 1 easy, 2 hard
+    def show_menu(self, best_option = 1, pc_option=False, diff=0):
 
         if self.menu == False:
             pygame.draw.rect(self.screen, self.menu_color, self.main_menu)
