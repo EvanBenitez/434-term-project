@@ -45,14 +45,14 @@ class Board:
 class Computer_Player:
     #easy
     #pick a spot in the grid at random until there is an empty spot
-    def easy(self):
+    def easy(self, board):
             i = randInt(0,2)
             j = randInt(0,2)
             if self.grid[i][j] == 'B':
                 self.grid[i][j] = 'X'
 
     #hard
-    def hard(self):
+    def hard(self, board):
             #computer to check if it can win, if can win, wins
             if self.grid[0][0] == 'X' and self.grid[0][2] == 'X' and self.grid[0][1] == 'B':
                 self.grid[0][1] = 'X'
