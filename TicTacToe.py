@@ -574,9 +574,9 @@ class GUI:
                 self.screen.blit(self.easyLabel, self.loc_easy)
                 self.screen.blit(self.hardLabel, self.loc_hard)
                 self.checkmark(self.loc_playervspc[0] + 160, self.loc_playervspc[1] + 12)
-                if diff == 1:
+                if diff == 0:
                     self.checkmark(self.loc_easy[0] + 175, self.loc_easy[1] + 12)
-                elif diff == 2:
+                elif diff == 1:
                     self.checkmark(self.loc_hard[0] + 175, self.loc_hard[1] + 12)
             else:
                 self.screen.blit(self.light_difficultyLabel, self.loc_diff)
@@ -617,21 +617,21 @@ class GUI:
 def main():
     # initialize pygame module
     pygame.init()
+    display = pygame.display # solves some issues somehow
 
     # create the GUI
     gui = GUI()
     gui.start_gui()
+    
+    # create game
     G = Game()
 
-    display = pygame.display
+    # settings
+    best_of = 1 # 1 game is default 
+    pc_player = False;
+    diff = 0;
+    pc_char = 'O' # denotes if the computer is x or o
 
-    # testing code-------------------------
-    B = Board()
-
-    Xwins = 0
-    Ywins = 0
-    gui.draw_board_score(B, Xwins, Ywins)
-    # end of testing code ----------------
 
     # contrls the main loop
     running = True
@@ -640,24 +640,187 @@ def main():
     while running:
         # get all events from the event queue
         for event in pygame.event.get():
-            # QUIT event handler
+            # QUIT event handler (x in corner)
             if event.type == pygame.QUIT:
                 running = False
                 pygame.display.quit()
                 pygame.quit()
+                    
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos()
-                G.winTracker()
-                Xwins += 1
-                Ywins += 1
-                gui.draw_board_score(B, Xwins, Ywins)
-
-                if gui.click_item(mouse_position) == "game_button":
-                    if Xwins % 2 == 0:
-                        gui.show_menu(Xwins % 4 + 1, True, 2)
+                
+                # find item clicked if any
+                clicked = gui.click_item(mouse_position)
+                
+                # game button clicked
+                if clicked == "game_button":
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                # menu options
+                
+                # new button clicked
+                elif clicked == "new":
+                    G = Game()
+                    if best_of == 1:
+                        gui.draw_board(G.B) # get board from game object
                     else:
-                        gui.show_menu(Xwins % 4 + 1, False)
+                        gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount) # get board from game object, pas in the win counts from game object
+                        
+                # 1 of 1 button clicked
+                elif clicked == "1of1": 
+                    best_of = 1
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                 # 2 of 3 button clicked
+                elif clicked == "2of3": 
+                    best_of = 2
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                 # 3 of 5 button clicked
+                elif clicked == "3of5": 
+                    best_of = 3
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                 # 4 of 7 button clicked
+                elif clicked == "4of7": 
+                    best_of = 4
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                 # Player vs. Player button clicked
+                elif clicked == "pvp": 
+                    pc_player = False
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                # Player vs. PC button clicked
+                elif clicked == "pvpc": 
+                    pc_player = True
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                # easy button clicked and pc_player is true
+                elif clicked == "easy" and pc_player == True: 
+                    diff = 0
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                # hard button clicked and pc_player is true
+                elif clicked == "hard" and pc_player == True: 
+                    diff = 1
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff)
+                    
+                # quit clicked and pc_player is true
+                elif clicked == "quit": 
+                    running = False
+                    pygame.display.quit()
+                    pygame.quit()
+                    
+                # the actual game starts HERE!!!
+                
+                # grid[[0]0]
+                elif clicked == "0,0": 
+                    # placer will place the marker of whos turn it is
+                    # will return true if the marker is place and false if not
+                    # this would be the case if someone try to place a marker in
+                    # and already occupied spot
+                    if G.placer(0,0): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                # grid[[0][1]
+                elif clicked == "0,1": 
+                    if G.placer(0,1): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                 # grid[[0][2]
+                elif clicked == "0,2": 
+                    if G.placer(0,2): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                 # grid[[1]0]
+                elif clicked == "1,0": 
+                    if G.placer(1,0): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                # grid[[1][1]
+                elif clicked == "1,1": 
+                    if G.placer(1,1): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                 # grid[[1][2]
+                elif clicked == "1,2": 
+                    if G.placer(0,2): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                # grid[[2]0]
+                elif clicked == "2,0": 
+                    if G.placer(2,0): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                # grid[[2][1]
+                elif clicked == "2,1": 
+                    if G.placer(2,1): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                 # grid[[2][2]
+                elif clicked == "2,2": 
+                    if G.placer(2,2): 
+                        if best_of == 1:
+                            gui.draw_board(G.B)
+                        else:
+                            gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                            
+            # Computer makes it's move it if is its turn 
+            if pc_player and pc_char == G.turn:
+                if diff == 0:
+                     # Computer player takes a copy of the board and the computers charater 
+                     # and returns a tuple with row and col that it was place in
+                    move = Computer_Player.easy(G.B, pc_char)
+                    G.placer(move[0],move[1]);
+            
+            # check for overall winner 
+            if G.xWinsCount == best_of or G.xWinsCount == best_of:
+                gui.win_screen(G.currentWinner)
+   
+                
+            
+                    
+                    
+                    
+       # print(best_of)
+       # print(pc_player)
+       # print(diff)
+                
 
 
 if __name__ == "__main__":
