@@ -340,10 +340,14 @@ class GUI:
         self.difficultyLabel = font.render('Difficulty:', True, self.line_color)
         self.easyLabel = font.render('Easy', True, self.line_color)
         self.hardLabel = font.render('Hard', True, self.line_color)
+        self.pcLabel = font.render('Computer Character:', True, self.line_color)
+        self.XLabel = font.render('X', True, self.line_color)
+        self.OLabel = font.render('O', True, self.line_color)
         # lighter color
         self.light_difficultyLabel = font.render('Difficulty:', True, self.light_text)
         self.light_easyLabel = font.render('Easy', True, self.light_text)
         self.light_hardLabel = font.render('Hard', True, self.light_text)
+        self.light_pc = font.render('Computer Character:', True, self.light_text)
 
         self.quitLabel = font.render('Quit!', True, self.line_color)
 
@@ -367,6 +371,8 @@ class GUI:
         self.loc_playervspc = (self.loc_menu[0] + 23, self.loc_menu[1] + 167)
         self.loc_easy = (self.loc_menu[0] + 7, self.loc_menu[1] + 217)
         self.loc_hard = (self.loc_menu[0] + 7, self.loc_menu[1] + 235)
+        self.loc_pc = (self.loc_menu[0] + 3, self.loc_menu[1] + 253)
+        self.loc_XO = (self.loc_menu[0] + 180, self.loc_menu[1] + 253)
         self.loc_quit = (self.loc_menu[0] + 78, self.loc_menu[1] + 275)
 
         # menu label location (non-interactive)
@@ -401,6 +407,8 @@ class GUI:
             pygame.Rect(self.loc_menu[0], self.loc_easy[1], self.menu_option_hor, self.menu_option_vert), 1)
         self.objects["hard"] = (
             pygame.Rect(self.loc_menu[0], self.loc_hard[1], self.menu_option_hor, self.menu_option_vert), 1)
+        self.objects["pc"] = (
+            pygame.Rect(self.loc_menu[0], self.loc_pc[1], self.menu_option_hor, self.menu_option_vert), 1)
         self.objects["quit"] = (
             pygame.Rect(self.loc_menu[0], self.loc_quit[1], self.menu_option_hor, self.menu_option_vert), 1)
 
@@ -543,7 +551,7 @@ class GUI:
     # best_option to denote which best of option is selected either 1,2,3,4
     # pc_option to denote if pc_option is selected
     # diff to indicate pc difficulty 1 easy, 2 hard
-    def show_menu(self, best_option = 1, pc_option=False, diff=0):
+    def show_menu(self, best_option = 1, pc_option=False, diff=0, isX=False):
 
         if self.menu == False:
             pygame.draw.rect(self.screen, self.menu_color, self.main_menu)
@@ -573,15 +581,21 @@ class GUI:
                 self.screen.blit(self.difficultyLabel, self.loc_diff)
                 self.screen.blit(self.easyLabel, self.loc_easy)
                 self.screen.blit(self.hardLabel, self.loc_hard)
+                self.screen.blit(self.pcLabel, self.loc_pc)
                 self.checkmark(self.loc_playervspc[0] + 160, self.loc_playervspc[1] + 12)
                 if diff == 0:
                     self.checkmark(self.loc_easy[0] + 175, self.loc_easy[1] + 12)
                 elif diff == 1:
                     self.checkmark(self.loc_hard[0] + 175, self.loc_hard[1] + 12)
+                if isX == False:
+                    self.screen.blit(self.OLabel, self.loc_XO)
+                else:
+                    self.screen.blit(self.XLabel, self.loc_XO)
             else:
                 self.screen.blit(self.light_difficultyLabel, self.loc_diff)
                 self.screen.blit(self.light_easyLabel, self.loc_easy)
                 self.screen.blit(self.light_hardLabel, self.loc_hard)
+                self.screen.blit(self.light_pc, self.loc_pc)
                 self.checkmark(self.loc_playervsplayer[0] + 160, self.loc_playervsplayer[1] + 12)
 
             pygame.draw.line(self.screen, self.line_color, self.loc_line5[0], self.loc_line5[1])
@@ -611,6 +625,17 @@ class GUI:
         thickness = 3
         pygame.draw.line(self.screen, self.line_color, (x - mark_size, y - mark_size), (x, y), thickness)
         pygame.draw.line(self.screen, self.line_color, (x + 2 * mark_size, y - 2 * mark_size), (x, y), thickness)
+        
+    # display winner
+    def win_screen(self, mark):
+        self.start_gui()
+        font = pygame.font.SysFont(None, 150)
+        winner = font.render(mark, True, self.draw_color)
+        win = font.render("WINS!", True, self.draw_color)
+        self.screen.blit(winner, (int(self.size[0] * (5/11)), int(self.size[1] * (1/5))))
+        self.screen.blit(win, (int(self.size[0] * (3/10)), int(self.size[1] * (2/5))))
+        pygame.display.flip()
+        print("in the win")
 
 
 # function for the main loop
@@ -630,7 +655,7 @@ def main():
     best_of = 1 # 1 game is default 
     pc_player = False;
     diff = 0;
-    pc_char = 'O' # denotes if the computer is x or o
+    pc_isX = False # denotes if the computer is x or o
 
 
     # contrls the main loop
@@ -645,6 +670,7 @@ def main():
                 running = False
                 pygame.display.quit()
                 pygame.quit()
+                
                     
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -671,49 +697,59 @@ def main():
                 elif clicked == "1of1": 
                     best_of = 1
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
                     
-                 # 2 of 3 button clicked
+                  # 2 of 3 button clicked
                 elif clicked == "2of3": 
                     best_of = 2
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
                     
-                 # 3 of 5 button clicked
+                  # 3 of 5 button clicked
                 elif clicked == "3of5": 
                     best_of = 3
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
                     
-                 # 4 of 7 button clicked
+                  # 4 of 7 button clicked
                 elif clicked == "4of7": 
                     best_of = 4
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
                     
-                 # Player vs. Player button clicked
+                  # Player vs. Player button clicked
                 elif clicked == "pvp": 
                     pc_player = False
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
                     
                 # Player vs. PC button clicked
                 elif clicked == "pvpc": 
                     pc_player = True
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
                     
                 # easy button clicked and pc_player is true
                 elif clicked == "easy" and pc_player == True: 
                     diff = 0
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
                     
                 # hard button clicked and pc_player is true
                 elif clicked == "hard" and pc_player == True: 
                     diff = 1
                     gui.menu = False # needed to keep showing the menu
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
+                    
+                # computer character clicked
+                elif clicked == "pc": 
+                    if pc_isX == False:
+                        pc_isX = True
+                    else:
+                        pc_isX = False
+                    gui.menu = False # needed to keep showing the menu
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
+ 
                     
                 # quit clicked and pc_player is true
                 elif clicked == "quit": 
@@ -743,7 +779,7 @@ def main():
                         else:
                             gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
                             
-                 # grid[[0][2]
+                  # grid[[0][2]
                 elif clicked == "0,2": 
                     if G.placer(0,2): 
                         if best_of == 1:
@@ -751,7 +787,7 @@ def main():
                         else:
                             gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
                             
-                 # grid[[1]0]
+                  # grid[[1]0]
                 elif clicked == "1,0": 
                     if G.placer(1,0): 
                         if best_of == 1:
@@ -767,7 +803,7 @@ def main():
                         else:
                             gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
                             
-                 # grid[[1][2]
+                  # grid[[1][2]
                 elif clicked == "1,2": 
                     if G.placer(0,2): 
                         if best_of == 1:
@@ -791,7 +827,7 @@ def main():
                         else:
                             gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
                             
-                 # grid[[2][2]
+                  # grid[[2][2]
                 elif clicked == "2,2": 
                     if G.placer(2,2): 
                         if best_of == 1:
@@ -801,25 +837,21 @@ def main():
                             
                             
             # Computer makes it's move it if is its turn 
-            if pc_player and pc_char == G.turn:
+            if pc_player and pc_isX == G.turn:
                 if diff == 0:
-                     # Computer player takes a copy of the board and the computers charater 
-                     # and returns a tuple with row and col that it was place in
-                    move = Computer_Player.easy(G.B, pc_char)
+                    # Computer player takes a copy of the board and the computers charater 
+                    # and returns a tuple with row and col that it was place in
+                    if pc_isX == False:
+                        move = Computer_Player.easy(G.B, 'O')
+                    else:
+                         move = Computer_Player.easy(G.B, 'X')
                     G.placer(move[0],move[1]);
             
             # check for overall winner 
             if G.xWinsCount == best_of or G.xWinsCount == best_of:
                 gui.win_screen(G.currentWinner)
-   
-                
-            
-                    
-                    
-                    
-       # print(best_of)
-       # print(pc_player)
-       # print(diff)
+    
+
                 
 
 
