@@ -49,7 +49,6 @@ class Computer_Player:
     # easy
     # pick a spot in the grid at random until there is an empty spot
     def easy(self, comp_char, user_char):
-        while self.computer_turn == True:
             i = random.randInt(0, 2)
             j = random.randInt(0, 2)
             if self.grid[i][j] == 'B':
@@ -57,7 +56,6 @@ class Computer_Player:
 
     # hard
     def hard(self, comp_char, user_char):
-        while self.computer_turn == True:
             # computer to check if it can win, if can win, wins
             if self.grid[0][0] == comp_char and self.grid[0][2] == comp_char and self.grid[0][1] == 'B':
                 self.grid[0][1] = comp_char
@@ -153,8 +151,8 @@ class Computer_Player:
                 self.grid[0][2] = comp_char
             elif self.grid[2][2] == 'B':
                 self.grid[2][2] = comp_char
-			elif self.grid[1][1] == 'B':
-				self.grid[1][1] = comp_char
+	    elif self.grid[1][1] == 'B':
+		self.grid[1][1] = comp_char
             elif self.grid[0][1] == 'B':
                 self.grid[0][1] = comp_char
             elif self.grid[1][0] == 'B':
