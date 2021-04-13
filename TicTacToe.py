@@ -49,118 +49,171 @@ class Computer_Player:
     # easy
     # pick a spot in the grid at random until there is an empty spot
     def easy(self, board, comp_char):
+        turn = True
+        while (turn == True):
             i = random.randInt(0, 2)
             j = random.randInt(0, 2)
-            if self.grid[i][j] == 'B':
-                self.grid[i][j] = comp_char
+            if board.grid[i][j] == 'B':
+                board.grid[i][j] = comp_char
+                turn = False
+				return (i, j)
 
     # hard
     def hard(self, board, comp_char):
         # computer to check if it can win, if can win, wins
-        if self.grid[0][0] == comp_char and self.grid[0][2] == comp_char and self.grid[0][1] == 'B':
-            self.grid[0][1] = comp_char
-        elif self.grid[1][0] == comp_char and self.grid[1][2] == comp_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[2][0] == comp_char and self.grid[2][2] == comp_char and self.grid[2][1] == 'B':
-            self.grid[2][1] = comp_char
-        elif self.grid[0][0] == comp_char and self.grid[0][1] == comp_char and self.grid[0][2] == 'B':
-            self.grid[0][2] = comp_char
-        elif self.grid[1][0] == comp_char and self.grid[1][1] == comp_char and self.grid[1][2] == 'B':
-            self.grid[1][2] = comp_char
-        elif self.grid[2][0] == comp_char and self.grid[2][1] == comp_char and self.grid[2][2] == 'B':
-            self.grid[2][2] = comp_char
-        elif self.grid[0][1] == comp_char and self.grid[0][2] == comp_char and self.grid[0][0] == 'B':
-            self.grid[0][0] = comp_char
-        elif self.grid[1][1] == comp_char and self.grid[1][2] == comp_char and self.grid[1][0] == 'B':
-            self.grid[1][0] = comp_char
-        elif self.grid[2][1] == comp_char and self.grid[2][2] == comp_char and self.grid[2][0] == 'B':
-            self.grid[2][0] = comp_char
-        elif self.grid[1][1] == comp_char:
-            if self.grid[0][0] == comp_char and self.grid[2][2] == 'B':
-                self.grid[2][2] = comp_char
-            elif self.grid[2][2] == comp_char and self.grid[0][0] == 'B':
-                self.grid[0][0] = comp_char
-            elif self.grid[0][2] == comp_char and self.grid[2][0] == 'B':
-                self.grid[2][0] = comp_char
-            elif self.grid[2][0] == comp_char and self.grid[0][2] == 'B':
-                self.grid[0][2] = comp_char
-        elif self.grid[0][0] == user_char and self.grid[2][2] == user_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][2] == user_char and self.grid[2][0] == user_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][0] == comp_char and self.grid[2][0] == comp_char and self.grid[1][0] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][1] == comp_char and self.grid[2][1] == comp_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][2] == comp_char and self.grid[2][2] == comp_char and self.grid[1][2] == 'B':
-            self.grid[1][2] = comp_char
+        if board.grid[0][0] == comp_char and board.grid[0][2] == comp_char and board.grid[0][1] == 'B':
+            board.grid[0][1] = comp_char
+			return (0, 1)
+        elif board.grid[1][0] == comp_char and board.grid[1][2] == comp_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[2][0] == comp_char and board.grid[2][2] == comp_char and board.grid[2][1] == 'B':
+            board.grid[2][1] = comp_char
+			return (2, 1)
+        elif board.grid[0][0] == comp_char and board.grid[0][1] == comp_char and board.grid[0][2] == 'B':
+            board.grid[0][2] = comp_char
+			return (0, 2)
+        elif board.grid[1][0] == comp_char and board.grid[1][1] == comp_char and board.grid[1][2] == 'B':
+            board.grid[1][2] = comp_char
+			return (1, 2)
+        elif board.grid[2][0] == comp_char and board.grid[2][1] == comp_char and board.grid[2][2] == 'B':
+            board.grid[2][2] = comp_char
+			return (2, 2)
+        elif board.grid[0][1] == comp_char and board.grid[0][2] == comp_char and board.grid[0][0] == 'B':
+            board.grid[0][0] = comp_char
+			return (0, 0)
+        elif board.grid[1][1] == comp_char and board.grid[1][2] == comp_char and board.grid[1][0] == 'B':
+            board.grid[1][0] = comp_char
+			return (1, 0)
+        elif board.grid[2][1] == comp_char and board.grid[2][2] == comp_char and board.grid[2][0] == 'B':
+            board.grid[2][0] = comp_char
+			return (2, 0)
+        elif board.grid[1][1] == comp_char:
+            if board.grid[0][0] == comp_char and board.grid[2][2] == 'B':
+                board.grid[2][2] = comp_char
+				return (2, 2)
+            elif board.grid[2][2] == comp_char and board.grid[0][0] == 'B':
+                board.grid[0][0] = comp_char
+				return (0, 0)
+            elif board.grid[0][2] == comp_char and board.grid[2][0] == 'B':
+                board.grid[2][0] = comp_char
+				return (2, 0)
+            elif board.grid[2][0] == comp_char and board.grid[0][2] == 'B':
+                board.grid[0][2] = comp_char
+				return (0, 2)
+        elif board.grid[0][0] == user_char and board.grid[2][2] == user_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[0][2] == user_char and board.grid[2][0] == user_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[0][0] == comp_char and board.grid[2][0] == comp_char and board.grid[1][0] == 'B':
+            board.grid[1][1] = comp_char
+			return (1,1)
+        elif board.grid[0][1] == comp_char and board.grid[2][1] == comp_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[0][2] == comp_char and board.grid[2][2] == comp_char and board.grid[1][2] == 'B':
+            board.grid[1][2] = comp_char
+			return (1, 2)
 
         # computer to check if user can win, if can win, blocks user
-        elif self.grid[0][0] == user_char and self.grid[0][2] == user_char and self.grid[0][1] == 'B':
-            self.grid[0][1] = comp_char
-        elif self.grid[1][0] == user_char and self.grid[1][2] == user_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[2][0] == user_char and self.grid[2][2] == user_char and self.grid[2][1] == 'B':
-            self.grid[2][1] = comp_char
-        elif self.grid[0][0] == user_char and self.grid[0][1] == user_char and self.grid[0][2] == 'B':
-            self.grid[0][2] = comp_char
-        elif self.grid[1][0] == user_char and self.grid[1][1] == user_char and self.grid[1][2] == 'B':
-            self.grid[1][2] = comp_char
-        elif self.grid[2][0] == user_char and self.grid[2][1] == user_char and self.grid[2][2] == 'B':
-            self.grid[2][2] = comp_char
-        elif self.grid[0][1] == user_char and self.grid[0][2] == user_char and self.grid[0][0] == 'B':
-            self.grid[0][0] = comp_char
-        elif self.grid[1][1] == user_char and self.grid[1][2] == user_char and self.grid[1][0] == 'B':
-            self.grid[1][0] = comp_char
-        elif self.grid[2][1] == user_char and self.grid[2][2] == user_char and self.grid[2][0] == 'B':
-            self.grid[2][0] = comp_char
-        elif self.grid[1][1] == user_char:
-            if self.grid[0][0] == user_char and self.grid[2][2] == 'B':
-                self.grid[2][2] = comp_char
-            elif self.grid[2][2] == user_char and self.grid[0][0] == 'B':
-                self.grid[0][0] = comp_char
-            elif self.grid[0][2] == user_char and self.grid[2][0] == 'B':
-                self.grid[2][0] = comp_char
-            elif self.grid[2][0] == user_char and self.grid[0][2] == 'B':
-                self.grid[0][2] = comp_char
-        elif self.grid[0][0] == user_char and self.grid[2][2] == user_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][2] == user_char and self.grid[2][0] == user_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][0] == user_char and self.grid[2][0] == user_char and self.grid[1][0] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][1] == user_char and self.grid[2][1] == user_char and self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][2] == user_char and self.grid[2][2] == user_char and self.grid[1][2] == 'B':
-            self.grid[1][2] = comp_char
+		if board.grid[0][0] == user_char and board.grid[0][2] == user_char and board.grid[0][1] == 'B':
+            board.grid[0][1] = comp_char
+			return (0, 1)
+        elif board.grid[1][0] == user_char and board.grid[1][2] == user_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[2][0] == user_char and board.grid[2][2] == user_char and board.grid[2][1] == 'B':
+            board.grid[2][1] = comp_char
+			return (2, 1)
+        elif board.grid[0][0] == user_char and board.grid[0][1] == user_char and board.grid[0][2] == 'B':
+            board.grid[0][2] = comp_char
+			return (0, 2)
+        elif board.grid[1][0] == user_char and board.grid[1][1] == user_char and board.grid[1][2] == 'B':
+            board.grid[1][2] = comp_char
+			return (1, 2)
+        elif board.grid[2][0] == user_char and board.grid[2][1] == user_char and board.grid[2][2] == 'B':
+            board.grid[2][2] = comp_char
+			return (2, 2)
+        elif board.grid[0][1] == user_char and board.grid[0][2] == user_char and board.grid[0][0] == 'B':
+            board.grid[0][0] = comp_char
+			return (0, 0)
+        elif board.grid[1][1] == user_char and board.grid[1][2] == user_char and board.grid[1][0] == 'B':
+            board.grid[1][0] = comp_char
+			return (1, 0)
+        elif board.grid[2][1] == user_char and board.grid[2][2] == user_char and board.grid[2][0] == 'B':
+            board.grid[2][0] = comp_char
+			return (2, 0)
+        elif board.grid[1][1] == user_char:
+            if board.grid[0][0] == user_char and board.grid[2][2] == 'B':
+                board.grid[2][2] = comp_char
+				return (2, 2)
+            elif board.grid[2][2] == user_char and board.grid[0][0] == 'B':
+                board.grid[0][0] = comp_char
+				return (0, 0)
+            elif board.grid[0][2] == user_char and board.grid[2][0] == 'B':
+                board.grid[2][0] = comp_char
+				return (2, 0)
+            elif board.grid[2][0] == user_char and board.grid[0][2] == 'B':
+                board.grid[0][2] = comp_char
+				return (0, 2)
+        elif board.grid[0][0] == user_char and board.grid[2][2] == user_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[0][2] == user_char and board.grid[2][0] == user_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[0][0] == user_char and board.grid[2][0] == user_char and board.grid[1][0] == 'B':
+            board.grid[1][1] = comp_char
+			return (1,1)
+        elif board.grid[0][1] == user_char and board.grid[2][1] == user_char and board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[0][2] == user_char and board.grid[2][2] == user_char and board.grid[1][2] == 'B':
+            board.grid[1][2] = comp_char
+			return (1, 2)
 
         # computer to make a non winning or blocking move
-        elif self.grid[0][0] == 'B':
-            self.grid[0][0] = comp_char
-        elif self.grid[1][1] == 'B' and self.grid[0][0] == user_char:
-            self.grid[1][1] == comp_char
-        elif self.grid[1][1] == 'B' and self.grid[2][0] == user_char:
-            self.grid[1][1] == comp_char
-        elif self.grid[1][1] == 'B' and self.grid[2][2] == user_char:
-            self.grid[1][1] == comp_char
-        elif self.grid[1][1] == 'B' and self.grid[0][2] == user_char:
-            self.grid[1][1] == comp_char
-        elif self.grid[2][0] == 'B':
-            self.grid[2][0] = comp_char
-        elif self.grid[0][2] == 'B':
-            self.grid[0][2] = comp_char
-        elif self.grid[2][2] == 'B':
-            self.grid[2][2] = comp_char
-        elif self.grid[1][1] == 'B':
-            self.grid[1][1] = comp_char
-        elif self.grid[0][1] == 'B':
-            self.grid[0][1] = comp_char
-        elif self.grid[1][0] == 'B':
-            self.grid[1][0] = comp_char
-        elif self.grid[2][1] == 'B':
-            self.grid[2][1] = comp_char
-        elif self.grid[1][2] == 'B':
-            self.grid[1][2] = comp_char                
+        elif board.grid[0][0] == 'B':
+            board.grid[0][0] = comp_char
+			return (0, 0)
+        elif board.grid[1][1] == 'B' and board.grid[0][0] == user_char:
+            board.grid[1][1] == comp_char
+			return (1, 1)
+        elif board.grid[1][1] == 'B' and board.grid[2][0] == user_char:
+            board.grid[1][1] == comp_char
+			return (1, 1)
+        elif board.grid[1][1] == 'B' and board.grid[2][2] == user_char:
+            board.grid[1][1] == comp_char
+			return (1, 1)
+        elif board.grid[1][1] == 'B' and board.grid[0][2] == user_char:
+            board.grid[1][1] == comp_char
+			return (1, 1)
+        elif board.grid[2][0] == 'B':
+            board.grid[2][0] = comp_char
+			return (2, 0)
+        elif board.grid[0][2] == 'B':
+            board.grid[0][2] = comp_char
+			return (0, 2)
+        elif board.grid[2][2] == 'B':
+            board.grid[2][2] = comp_char
+			return (2, 2)
+        elif board.grid[1][1] == 'B':
+            board.grid[1][1] = comp_char
+			return (1, 1)
+        elif board.grid[0][1] == 'B':
+            board.grid[0][1] = comp_char
+			return (0, 1)
+        elif board.grid[1][0] == 'B':
+            board.grid[1][0] = comp_char
+			return (1, 0)
+        elif board.grid[2][1] == 'B':
+            board.grid[2][1] = comp_char
+			return (2, 1)
+        elif board.grid[1][2] == 'B':
+            board.grid[1][2] = comp_char
+			return (1, 2) 
                 
 # class element for Game element
 class Game:
