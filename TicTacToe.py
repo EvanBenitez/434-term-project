@@ -49,14 +49,14 @@ class Computer_Player:
     # easy
     # pick a spot in the grid at random until there is an empty spot
     def easy(self, board, comp_char):
-        turn = True
-        while (turn == True):
-            i = random.randInt(0, 2)
-            j = random.randInt(0, 2)
-            if board.grid[i][j] == 'B':
-                board.grid[i][j] = comp_char
-                turn = False
-		return (i, j)
+	turn = True
+	while (turn == True):
+		i = random.randInt(0, 2)
+		j = random.randInt(0, 2)
+		if board.grid[i][j] == 'B':
+			board.grid[i][j] = comp_char
+			turn = False
+			return (i, j)
 
     # hard
     def hard(self, board, comp_char):
