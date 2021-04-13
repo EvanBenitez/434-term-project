@@ -56,112 +56,111 @@ class Computer_Player:
 
     # hard
     def hard(self, comp_char):
-            # computer to check if it can win, if can win, wins
-            if self.grid[0][0] == comp_char and self.grid[0][2] == comp_char and self.grid[0][1] == 'B':
-                self.grid[0][1] = comp_char
-            elif self.grid[1][0] == comp_char and self.grid[1][2] == comp_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[2][0] == comp_char and self.grid[2][2] == comp_char and self.grid[2][1] == 'B':
-                self.grid[2][1] = comp_char
-            elif self.grid[0][0] == comp_char and self.grid[0][1] == comp_char and self.grid[0][2] == 'B':
-                self.grid[0][2] = comp_char
-            elif self.grid[1][0] == comp_char and self.grid[1][1] == comp_char and self.grid[1][2] == 'B':
-                self.grid[1][2] = comp_char
-            elif self.grid[2][0] == comp_char and self.grid[2][1] == comp_char and self.grid[2][2] == 'B':
+        # computer to check if it can win, if can win, wins
+        if self.grid[0][0] == comp_char and self.grid[0][2] == comp_char and self.grid[0][1] == 'B':
+            self.grid[0][1] = comp_char
+        elif self.grid[1][0] == comp_char and self.grid[1][2] == comp_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[2][0] == comp_char and self.grid[2][2] == comp_char and self.grid[2][1] == 'B':
+            self.grid[2][1] = comp_char
+        elif self.grid[0][0] == comp_char and self.grid[0][1] == comp_char and self.grid[0][2] == 'B':
+            self.grid[0][2] = comp_char
+        elif self.grid[1][0] == comp_char and self.grid[1][1] == comp_char and self.grid[1][2] == 'B':
+            self.grid[1][2] = comp_char
+        elif self.grid[2][0] == comp_char and self.grid[2][1] == comp_char and self.grid[2][2] == 'B':
+            self.grid[2][2] = comp_char
+        elif self.grid[0][1] == comp_char and self.grid[0][2] == comp_char and self.grid[0][0] == 'B':
+            self.grid[0][0] = comp_char
+        elif self.grid[1][1] == comp_char and self.grid[1][2] == comp_char and self.grid[1][0] == 'B':
+            self.grid[1][0] = comp_char
+        elif self.grid[2][1] == comp_char and self.grid[2][2] == comp_char and self.grid[2][0] == 'B':
+            self.grid[2][0] = comp_char
+        elif self.grid[1][1] == comp_char:
+            if self.grid[0][0] == comp_char and self.grid[2][2] == 'B':
                 self.grid[2][2] = comp_char
-            elif self.grid[0][1] == comp_char and self.grid[0][2] == comp_char and self.grid[0][0] == 'B':
+            elif self.grid[2][2] == comp_char and self.grid[0][0] == 'B':
                 self.grid[0][0] = comp_char
-            elif self.grid[1][1] == comp_char and self.grid[1][2] == comp_char and self.grid[1][0] == 'B':
-                self.grid[1][0] = comp_char
-            elif self.grid[2][1] == comp_char and self.grid[2][2] == comp_char and self.grid[2][0] == 'B':
+            elif self.grid[0][2] == comp_char and self.grid[2][0] == 'B':
                 self.grid[2][0] = comp_char
-            elif self.grid[1][1] == comp_char:
-                if self.grid[0][0] == comp_char and self.grid[2][2] == 'B':
-                    self.grid[2][2] = comp_char
-                elif self.grid[2][2] == comp_char and self.grid[0][0] == 'B':
-                    self.grid[0][0] = comp_char
-                elif self.grid[0][2] == comp_char and self.grid[2][0] == 'B':
-                    self.grid[2][0] = comp_char
-                elif self.grid[2][0] == comp_char and self.grid[0][2] == 'B':
-                    self.grid[0][2] = comp_char
-            elif self.grid[0][0] == user_char and self.grid[2][2] == user_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][2] == user_char and self.grid[2][0] == user_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][0] == comp_char and self.grid[2][0] == comp_char and self.grid[1][0] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][1] == comp_char and self.grid[2][1] == comp_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][2] == comp_char and self.grid[2][2] == comp_char and self.grid[1][2] == 'B':
-                self.grid[1][2] = comp_char
+            elif self.grid[2][0] == comp_char and self.grid[0][2] == 'B':
+                self.grid[0][2] = comp_char
+        elif self.grid[0][0] == user_char and self.grid[2][2] == user_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][2] == user_char and self.grid[2][0] == user_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][0] == comp_char and self.grid[2][0] == comp_char and self.grid[1][0] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][1] == comp_char and self.grid[2][1] == comp_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][2] == comp_char and self.grid[2][2] == comp_char and self.grid[1][2] == 'B':
+            self.grid[1][2] = comp_char
 
-            # computer to check if user can win, if can win, blocks user
-            elif self.grid[0][0] == user_char and self.grid[0][2] == user_char and self.grid[0][1] == 'B':
-                self.grid[0][1] = comp_char
-            elif self.grid[1][0] == user_char and self.grid[1][2] == user_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[2][0] == user_char and self.grid[2][2] == user_char and self.grid[2][1] == 'B':
-                self.grid[2][1] = comp_char
-            elif self.grid[0][0] == user_char and self.grid[0][1] == user_char and self.grid[0][2] == 'B':
-                self.grid[0][2] = comp_char
-            elif self.grid[1][0] == user_char and self.grid[1][1] == user_char and self.grid[1][2] == 'B':
-                self.grid[1][2] = comp_char
-            elif self.grid[2][0] == user_char and self.grid[2][1] == user_char and self.grid[2][2] == 'B':
+        # computer to check if user can win, if can win, blocks user
+        elif self.grid[0][0] == user_char and self.grid[0][2] == user_char and self.grid[0][1] == 'B':
+            self.grid[0][1] = comp_char
+        elif self.grid[1][0] == user_char and self.grid[1][2] == user_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[2][0] == user_char and self.grid[2][2] == user_char and self.grid[2][1] == 'B':
+            self.grid[2][1] = comp_char
+        elif self.grid[0][0] == user_char and self.grid[0][1] == user_char and self.grid[0][2] == 'B':
+            self.grid[0][2] = comp_char
+        elif self.grid[1][0] == user_char and self.grid[1][1] == user_char and self.grid[1][2] == 'B':
+            self.grid[1][2] = comp_char
+        elif self.grid[2][0] == user_char and self.grid[2][1] == user_char and self.grid[2][2] == 'B':
+            self.grid[2][2] = comp_char
+        elif self.grid[0][1] == user_char and self.grid[0][2] == user_char and self.grid[0][0] == 'B':
+            self.grid[0][0] = comp_char
+        elif self.grid[1][1] == user_char and self.grid[1][2] == user_char and self.grid[1][0] == 'B':
+            self.grid[1][0] = comp_char
+        elif self.grid[2][1] == user_char and self.grid[2][2] == user_char and self.grid[2][0] == 'B':
+            self.grid[2][0] = comp_char
+        elif self.grid[1][1] == user_char:
+            if self.grid[0][0] == user_char and self.grid[2][2] == 'B':
                 self.grid[2][2] = comp_char
-            elif self.grid[0][1] == user_char and self.grid[0][2] == user_char and self.grid[0][0] == 'B':
+            elif self.grid[2][2] == user_char and self.grid[0][0] == 'B':
                 self.grid[0][0] = comp_char
-            elif self.grid[1][1] == user_char and self.grid[1][2] == user_char and self.grid[1][0] == 'B':
-                self.grid[1][0] = comp_char
-            elif self.grid[2][1] == user_char and self.grid[2][2] == user_char and self.grid[2][0] == 'B':
+            elif self.grid[0][2] == user_char and self.grid[2][0] == 'B':
                 self.grid[2][0] = comp_char
-            elif self.grid[1][1] == user_char:
-                if self.grid[0][0] == user_char and self.grid[2][2] == 'B':
-                    self.grid[2][2] = comp_char
-                elif self.grid[2][2] == user_char and self.grid[0][0] == 'B':
-                    self.grid[0][0] = comp_char
-                elif self.grid[0][2] == user_char and self.grid[2][0] == 'B':
-                    self.grid[2][0] = comp_char
-                elif self.grid[2][0] == user_char and self.grid[0][2] == 'B':
-                    self.grid[0][2] = comp_char
-            elif self.grid[0][0] == user_char and self.grid[2][2] == user_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][2] == user_char and self.grid[2][0] == user_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][0] == user_char and self.grid[2][0] == user_char and self.grid[1][0] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][1] == user_char and self.grid[2][1] == user_char and self.grid[1][1] == 'B':
-                self.grid[1][1] = comp_char
-            elif self.grid[0][2] == user_char and self.grid[2][2] == user_char and self.grid[1][2] == 'B':
-                self.grid[1][2] = comp_char
+            elif self.grid[2][0] == user_char and self.grid[0][2] == 'B':
+                self.grid[0][2] = comp_char
+        elif self.grid[0][0] == user_char and self.grid[2][2] == user_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][2] == user_char and self.grid[2][0] == user_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][0] == user_char and self.grid[2][0] == user_char and self.grid[1][0] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][1] == user_char and self.grid[2][1] == user_char and self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][2] == user_char and self.grid[2][2] == user_char and self.grid[1][2] == 'B':
+            self.grid[1][2] = comp_char
 
-            # computer to make a non winning or blocking move
-            elif self.grid[0][0] == 'B':
-                self.grid[0][0] = comp_char
-            elif self.grid[1][1] == 'B' and self.grid[0][0] == user_char:
-                self.grid[1][1] == comp_char
-            elif self.grid[1][1] == 'B' and self.grid[2][0] == user_char:
-                self.grid[1][1] == comp_char
-            elif self.grid[1][1] == 'B' and self.grid[2][2] == user_char:
-                self.grid[1][1] == comp_char
-            elif self.grid[1][1] == 'B' and self.grid[0][2] == user_char:
-                self.grid[1][1] == comp_char
-            elif self.grid[2][0] == 'B':
-                self.grid[2][0] = comp_char
-            elif self.grid[0][2] == 'B':
-                self.grid[0][2] = comp_char
-            elif self.grid[2][2] == 'B':
-                self.grid[2][2] = comp_char
-	    elif self.grid[1][1] == 'B':
-		self.grid[1][1] = comp_char
-            elif self.grid[0][1] == 'B':
-                self.grid[0][1] = comp_char
-            elif self.grid[1][0] == 'B':
-                self.grid[1][0] = comp_char
-            elif self.grid[2][1] == 'B':
-                self.grid[2][1] = comp_char
-            elif self.grid[1][2] == 'B':
-                self.grid[1][2] = comp_char
-                
+        # computer to make a non winning or blocking move
+        elif self.grid[0][0] == 'B':
+            self.grid[0][0] = comp_char
+        elif self.grid[1][1] == 'B' and self.grid[0][0] == user_char:
+            self.grid[1][1] == comp_char
+        elif self.grid[1][1] == 'B' and self.grid[2][0] == user_char:
+            self.grid[1][1] == comp_char
+        elif self.grid[1][1] == 'B' and self.grid[2][2] == user_char:
+            self.grid[1][1] == comp_char
+        elif self.grid[1][1] == 'B' and self.grid[0][2] == user_char:
+            self.grid[1][1] == comp_char
+        elif self.grid[2][0] == 'B':
+            self.grid[2][0] = comp_char
+        elif self.grid[0][2] == 'B':
+            self.grid[0][2] = comp_char
+        elif self.grid[2][2] == 'B':
+            self.grid[2][2] = comp_char
+        elif self.grid[1][1] == 'B':
+            self.grid[1][1] = comp_char
+        elif self.grid[0][1] == 'B':
+            self.grid[0][1] = comp_char
+        elif self.grid[1][0] == 'B':
+            self.grid[1][0] = comp_char
+        elif self.grid[2][1] == 'B':
+            self.grid[2][1] = comp_char
+        elif self.grid[1][2] == 'B':
+            self.grid[1][2] = comp_char                
                 
 # class element for Game element
 class Game:
