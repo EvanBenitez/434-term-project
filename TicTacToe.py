@@ -261,8 +261,15 @@ class Game:
 
         if self.xCounter < self.oCounter:
             self.turn = 'X'
+
         elif self.oCounter < self.xCounter:
             self.turn = 'O'
+
+        elif self.oCounter == self.xCounter:
+            if self.turn == 'O':
+                self.turn = 'X'
+            elif self.turn == 'X':
+                self.turn = 'O'
 
 
     def winComparator(self):
@@ -279,19 +286,12 @@ class Game:
         elif self.xWinsCount == self.oWinsCount:
             self.currentWinner = 'D'
 
-    def placer(self, mousePosition):
-        # this needs to get changed cause i dont REALLY know how to handle mouse input outside of main
-        for item in self.objects:
-            if self.objects[item][0].collidepoint(mousePosition):
-                if self.B is True and self.objects[item][1] == 2:
-                    preCoordinates = objects.get(item)
-                    self.postCoordinates = preCoordinates.split(",")
-
+    def place(self, row, col):
         if self.turn == 'X':
-            self.B.place(self.postCoordinates[0], self.postCoordinates[1], "X")
+            self.B.place(row, col, "X")
 
         elif self.turn == 'O':
-            self.B.place(self.postCoordinates[0], self.postCoordinates[1], "O")
+            self.B.place(row, col, "O")
         self.winTracker()
 
     def reprint(self):
