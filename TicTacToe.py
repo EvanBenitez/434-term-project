@@ -48,14 +48,14 @@ class Computer_Player:
 
     # easy
     # pick a spot in the grid at random until there is an empty spot
-    def easy(self, comp_char, user_char):
+    def easy(self, comp_char):
             i = random.randInt(0, 2)
             j = random.randInt(0, 2)
             if self.grid[i][j] == 'B':
                 self.grid[i][j] = comp_char
 
     # hard
-    def hard(self, comp_char, user_char):
+    def hard(self, comp_char):
             # computer to check if it can win, if can win, wins
             if self.grid[0][0] == comp_char and self.grid[0][2] == comp_char and self.grid[0][1] == 'B':
                 self.grid[0][1] = comp_char
