@@ -56,7 +56,7 @@ class Computer_Player:
             if board.grid[i][j] == 'B':
                 board.grid[i][j] = comp_char
                 turn = False
-				return (i, j)
+		return (i, j)
 
     # hard
     def hard(self, board, comp_char):
