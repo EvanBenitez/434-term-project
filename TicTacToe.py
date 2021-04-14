@@ -48,171 +48,176 @@ class Computer_Player:
 
     # easy
     # pick a spot in the grid at random until there is an empty spot
-    def easy(self, board, comp_char):
+    def easy(board, comp_char):
         turn = True
         while (turn == True):
-            i = random.randInt(0, 2)
-            j = random.randInt(0, 2)
+            i = random.randrange(0, 3)
+            j = random.randrange(0, 3)
             if board.grid[i][j] == 'B':
-                board.grid[i][j] = comp_char
+                #board.grid[i][j] = comp_char
                 turn = False
                 return (i, j)
 
     # hard
-    def hard(self, board, comp_char):
+    def hard(board, comp_char):
+        
+         # get user_char
+        user_char = ''
+        if comp_char == 'X':
+            user_char = 'O'
+        else:
+            user_char = 'X'
+            
         # computer to check if it can win, if can win, wins
         if board.grid[0][0] == comp_char and board.grid[0][2] == comp_char and board.grid[0][1] == 'B':
-            board.grid[0][1] = comp_char
+            #board.grid[0][1] = comp_char
             return (0, 1)
         elif board.grid[1][0] == comp_char and board.grid[1][2] == comp_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
-            return (1, 1)
-        elif board.grid[2][0] == comp_char and board.grid[2][2] == comp_char and board.grid[2][1] == 'B':
-            board.grid[2][1] = comp_char
+            ##board.grid[2][1] = comp_char
             return (2, 1)
         elif board.grid[0][0] == comp_char and board.grid[0][1] == comp_char and board.grid[0][2] == 'B':
             board.grid[0][2] = comp_char
             return (0, 2)
         elif board.grid[1][0] == comp_char and board.grid[1][1] == comp_char and board.grid[1][2] == 'B':
-            board.grid[1][2] = comp_char
+            #board.grid[1][2] = comp_char
             return (1, 2)
         elif board.grid[2][0] == comp_char and board.grid[2][1] == comp_char and board.grid[2][2] == 'B':
-            board.grid[2][2] = comp_char
+            #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[0][1] == comp_char and board.grid[0][2] == comp_char and board.grid[0][0] == 'B':
-            board.grid[0][0] = comp_char
+            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[1][1] == comp_char and board.grid[1][2] == comp_char and board.grid[1][0] == 'B':
-            board.grid[1][0] = comp_char
+            #board.grid[1][0] = comp_char
             return (1, 0)
         elif board.grid[2][1] == comp_char and board.grid[2][2] == comp_char and board.grid[2][0] == 'B':
-            board.grid[2][0] = comp_char
+            #board.grid[2][0] = comp_char
             return (2, 0)
         elif board.grid[1][1] == comp_char:
             if board.grid[0][0] == comp_char and board.grid[2][2] == 'B':
-                board.grid[2][2] = comp_char
+                #board.grid[2][2] = comp_char
                 return (2, 2)
             elif board.grid[2][2] == comp_char and board.grid[0][0] == 'B':
-                board.grid[0][0] = comp_char
+                #board.grid[0][0] = comp_char
                 return (0, 0)
             elif board.grid[0][2] == comp_char and board.grid[2][0] == 'B':
-                board.grid[2][0] = comp_char
+                #board.grid[2][0] = comp_char
                 return (2, 0)
             elif board.grid[2][0] == comp_char and board.grid[0][2] == 'B':
-                board.grid[0][2] = comp_char
+                #board.grid[0][2] = comp_char
                 return (0, 2)
         elif board.grid[0][0] == comp_char and board.grid[2][2] == comp_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == comp_char and board.grid[2][0] == comp_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][0] == comp_char and board.grid[2][0] == comp_char and board.grid[1][0] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][1] == comp_char and board.grid[2][1] == comp_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == comp_char and board.grid[2][2] == comp_char and board.grid[1][2] == 'B':
-            board.grid[1][2] = comp_char
+            #board.grid[1][2] = comp_char
             return (1, 2)
 
         # computer to check if user can win, if can win, blocks user
         elif board.grid[0][0] == user_char and board.grid[0][2] == user_char and board.grid[0][1] == 'B':
-            board.grid[0][1] = comp_char
+            #board.grid[0][1] = comp_char
             return (0, 1)
         elif board.grid[1][0] == user_char and board.grid[1][2] == user_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[2][0] == user_char and board.grid[2][2] == user_char and board.grid[2][1] == 'B':
-            board.grid[2][1] = comp_char
+            #board.grid[2][1] = comp_char
             return (2, 1)
         elif board.grid[0][0] == user_char and board.grid[0][1] == user_char and board.grid[0][2] == 'B':
-            board.grid[0][2] = comp_char
+            #board.grid[0][2] = comp_char
             return (0, 2)
         elif board.grid[1][0] == user_char and board.grid[1][1] == user_char and board.grid[1][2] == 'B':
-            board.grid[1][2] = comp_char
+            #board.grid[1][2] = comp_char
             return (1, 2)
         elif board.grid[2][0] == user_char and board.grid[2][1] == user_char and board.grid[2][2] == 'B':
-            board.grid[2][2] = comp_char
+           #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[0][1] == user_char and board.grid[0][2] == user_char and board.grid[0][0] == 'B':
-            board.grid[0][0] = comp_char
+            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[1][1] == user_char and board.grid[1][2] == user_char and board.grid[1][0] == 'B':
-            board.grid[1][0] = comp_char
+            #board.grid[1][0] = comp_char
             return (1, 0)
         elif board.grid[2][1] == user_char and board.grid[2][2] == user_char and board.grid[2][0] == 'B':
-            board.grid[2][0] = comp_char
+            #board.grid[2][0] = comp_char
             return (2, 0)
         elif board.grid[1][1] == user_char:
             if board.grid[0][0] == user_char and board.grid[2][2] == 'B':
-                board.grid[2][2] = comp_char
+                #board.grid[2][2] = comp_char
                 return (2, 2)
             elif board.grid[2][2] == user_char and board.grid[0][0] == 'B':
-                board.grid[0][0] = comp_char
+                #board.grid[0][0] = comp_char
                 return (0, 0)
             elif board.grid[0][2] == user_char and board.grid[2][0] == 'B':
-                board.grid[2][0] = comp_char
+                #board.grid[2][0] = comp_char
                 return (2, 0)
             elif board.grid[2][0] == user_char and board.grid[0][2] == 'B':
-                board.grid[0][2] = comp_char
+                #board.grid[0][2] = comp_char
                 return (0, 2)
         elif board.grid[0][0] == user_char and board.grid[2][2] == user_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == user_char and board.grid[2][0] == user_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][0] == user_char and board.grid[2][0] == user_char and board.grid[1][0] == 'B':
-            board.grid[1][1] = comp_char
+           # board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][1] == user_char and board.grid[2][1] == user_char and board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == user_char and board.grid[2][2] == user_char and board.grid[1][2] == 'B':
-            board.grid[1][2] = comp_char
+            #board.grid[1][2] = comp_char
             return (1, 2)
 
         # computer to make a non winning or blocking move
         elif board.grid[0][0] == 'B':
-            board.grid[0][0] = comp_char
+            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[1][1] == 'B' and board.grid[0][0] == user_char:
-            board.grid[1][1] == comp_char
+            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[1][1] == 'B' and board.grid[2][0] == user_char:
-            board.grid[1][1] == comp_char
+            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[1][1] == 'B' and board.grid[2][2] == user_char:
-            board.grid[1][1] == comp_char
+            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[1][1] == 'B' and board.grid[0][2] == user_char:
-            board.grid[1][1] == comp_char
+            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[2][0] == 'B':
-            board.grid[2][0] = comp_char
+            #board.grid[2][0] = comp_char
             return (2, 0)
         elif board.grid[0][2] == 'B':
-            board.grid[0][2] = comp_char
+           # board.grid[0][2] = comp_char
             return (0, 2)
         elif board.grid[2][2] == 'B':
-            board.grid[2][2] = comp_char
+            #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[1][1] == 'B':
-            board.grid[1][1] = comp_char
+           # board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][1] == 'B':
-            board.grid[0][1] = comp_char
+            #board.grid[0][1] = comp_char
             return (0, 1)
         elif board.grid[1][0] == 'B':
-            board.grid[1][0] = comp_char
+            #board.grid[1][0] = comp_char
             return (1, 0)
         elif board.grid[2][1] == 'B':
-            board.grid[2][1] = comp_char
+           # board.grid[2][1] = comp_char
             return (2, 1)
         elif board.grid[1][2] == 'B':
-            board.grid[1][2] = comp_char
+            #board.grid[1][2] = comp_char
             return (1, 2)
 
         # class element for Game element
@@ -224,11 +229,12 @@ class Game:
         self.xWinsCount = 0
         self.oWinsCount = 0
         self.B = Board()
-        self.currentWinner = ''
+        self.currentWinner = 'N'
         self.xCounter = 0
         self.oCounter = 0
-        self.turn = ''
+        self.turn = 'X'
         self.postCoordinates = []
+        self.matchState = 'N'
 
     def winTracker(self):
 
@@ -301,26 +307,35 @@ class Game:
         if owin is True:
             print("Hey now!")
             self.oWinsCount += 1
+            self.matchState = 'O'
+            self.winComparator()
 
         if xwin is True:
             print("Win!")
             self.xWinsCount += 1
+            self.matchState = 'X'
+            self.winComparator()
+            
 
     def turnTracker(self):
+        xCounter = oCounter = 0
+        
         for i in self.B.grid:
-            for j in self.B.grid:
-                if self.B.grid[i][j] == 'X':
-                    self.xCounter += 1
-                elif self.B.grid[i][j] == 'O':
-                    self.oCounter += 1
+            for j in i:
+                if j == 'X':
+                    xCounter += 1
+                elif j == 'O':
+                    oCounter += 1
+        if xCounter + oCounter >= 9:
+            self.matchState = 'D'
 
-        if self.xCounter < self.oCounter:
+        if xCounter <oCounter:
             self.turn = 'X'
 
-        elif self.oCounter < self.xCounter:
+        elif oCounter < xCounter:
             self.turn = 'O'
 
-        elif self.oCounter == self.xCounter:
+        elif oCounter == xCounter:
             if self.turn == 'O':
                 self.turn = 'X'
             elif self.turn == 'X':
@@ -341,12 +356,17 @@ class Game:
             self.currentWinner = 'D'
 
     def place(self, row, col):
+        if self.B.grid[row][col] != 'B':
+            return False
         if self.turn == 'X':
             self.B.place(row, col, "X")
-
+            self.turnTracker()
+            self.winTracker()
         elif self.turn == 'O':
             self.B.place(row, col, "O")
-        self.winTracker()
+            self.turnTracker()
+            self.winTracker()
+        return True
 
     def reprint(self):
         self.B.grid = [['B', 'B', 'B'], \
@@ -354,7 +374,8 @@ class Game:
                        ['B', 'B', 'B']]
         self.xCounter = 0
         self.oCounter = 0
-        self.turn = ''
+        self.turn = 'X'
+        self.matchState = 'N'
 
 
 # contols the graphical content of the game
@@ -710,6 +731,7 @@ def main():
 
     # create game
     G = Game()
+    gamen = False
 
     # settings
     best_of = 1  # 1 game is default
@@ -732,7 +754,7 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos()
-
+    
                 # find item clicked if any
                 clicked = gui.click_item(mouse_position)
 
@@ -745,6 +767,7 @@ def main():
                 # new button clicked
                 elif clicked == "new":
                     G = Game()
+                    gamen = True
                     if best_of == 1:
                         gui.draw_board(G.B)  # get board from game object
                     else:
@@ -819,11 +842,11 @@ def main():
 
                 # grid[[0]0]
                 elif clicked == "0,0":
-                    # placer will place the marker of whos turn it is
+                    # place will place the marker of whos turn it is
                     # will return true if the marker is place and false if not
                     # this would be the case if someone try to place a marker in
                     # and already occupied spot
-                    if G.placer(0, 0):
+                    if G.place(0, 0):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -831,7 +854,7 @@ def main():
 
                 # grid[[0][1]
                 elif clicked == "0,1":
-                    if G.placer(0, 1):
+                    if G.place(0, 1):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -839,7 +862,7 @@ def main():
 
                 # grid[[0][2]
                 elif clicked == "0,2":
-                    if G.placer(0, 2):
+                    if G.place(0, 2):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -847,7 +870,7 @@ def main():
 
                 # grid[[1]0]
                 elif clicked == "1,0":
-                    if G.placer(1, 0):
+                    if G.place(1, 0):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -855,7 +878,7 @@ def main():
 
                 # grid[[1][1]
                 elif clicked == "1,1":
-                    if G.placer(1, 1):
+                    if G.place(1, 1):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -863,7 +886,7 @@ def main():
 
                 # grid[[1][2]
                 elif clicked == "1,2":
-                    if G.placer(0, 2):
+                    if G.place(1, 2):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -871,7 +894,7 @@ def main():
 
                 # grid[[2]0]
                 elif clicked == "2,0":
-                    if G.placer(2, 0):
+                    if G.place(2, 0):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -879,7 +902,7 @@ def main():
 
                 # grid[[2][1]
                 elif clicked == "2,1":
-                    if G.placer(2, 1):
+                    if G.place(2, 1):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
@@ -887,14 +910,28 @@ def main():
 
                 # grid[[2][2]
                 elif clicked == "2,2":
-                    if G.placer(2, 2):
+                    if G.place(2, 2):
                         if best_of == 1:
                             gui.draw_board(G.B)
                         else:
                             gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
+                            
+                # check for overall winner
+            if G.xWinsCount == best_of or G.oWinsCount == best_of:
+                gui.win_screen(G.currentWinner)
+                G = Game()
+            # check for draw or winner
+            elif G.matchState != 'N':
+                G.reprint()
+                if best_of == 1:
+                    gui.draw_board(G.B)
+                else:
+                    gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
 
             # Computer makes it's move it if is its turn
-            if pc_player and pc_isX == G.turn:
+            if pc_player and pc_isX == (G.turn == 'X') and gamen:
+                print("Computer turn")
+                move = ''
                 if diff == 0:
                     # Computer player takes a copy of the board and the computers charater
                     # and returns a tuple with row and col that it was place in
@@ -902,11 +939,22 @@ def main():
                         move = Computer_Player.easy(G.B, 'O')
                     else:
                         move = Computer_Player.easy(G.B, 'X')
-                    G.placer(move[0], move[1]);
+                    G.place(move[0], move[1]);
+                else:
+                    if pc_isX == False:
+                        move = Computer_Player.hard(G.B, 'O')
+                    else:
+                        move = Computer_Player.hard(G.B, 'X')
+                G.place(move[0], move[1]);
+                if best_of == 1:
+                    gui.draw_board(G.B)
+                else:
+                    gui.draw_board_score(G.B, G.xWinsCount, G.oWinsCount)
 
-            # check for overall winner
-            if G.xWinsCount == best_of or G.xWinsCount == best_of:
-                gui.win_screen(G.currentWinner)
+                # check for overall winner
+                if G.xWinsCount == best_of or G.xWinsCount == best_of:
+                    gui.win_screen(G.currentWinner)
+                    gamen = False
 
 
 if __name__ == "__main__":
