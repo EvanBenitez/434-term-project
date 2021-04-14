@@ -180,9 +180,7 @@ class Computer_Player:
             return (1, 2)
 
         # computer to make a non winning or blocking move
-        elif board.grid[0][0] == 'B':
-            #board.grid[0][0] = comp_char
-            return (0, 0)
+
         elif board.grid[1][1] == 'B' and board.grid[0][0] == user_char:
             #board.grid[1][1] == comp_char
             return (1, 1)
@@ -195,6 +193,9 @@ class Computer_Player:
         elif board.grid[1][1] == 'B' and board.grid[0][2] == user_char:
             #board.grid[1][1] == comp_char
             return (1, 1)
+        elif board.grid[0][0] == 'B':
+            #board.grid[0][0] = comp_char
+            return (0, 0)
         elif board.grid[2][0] == 'B':
             #board.grid[2][0] = comp_char
             return (2, 0)
