@@ -124,6 +124,8 @@ class Computer_Player:
         elif board.grid[0][2] == comp_char and board.grid[2][2] == comp_char and board.grid[1][2] == 'B':
             #board.grid[1][2] = comp_char
             return (1, 2)
+        elif board.grid[0][2] == comp_char and board.grid[1][2] == comp_char and board.grid[2][2] == 'B':
+            return (2, 2)
 
         # computer to check if user can win, if can win, blocks user
         elif board.grid[0][0] == user_char and board.grid[0][2] == user_char and board.grid[0][1] == 'B':
@@ -184,6 +186,8 @@ class Computer_Player:
         elif board.grid[0][2] == user_char and board.grid[2][2] == user_char and board.grid[1][2] == 'B':
             #board.grid[1][2] = comp_char
             return (1, 2)
+        elif board.grid[0][2] == user_char and board.grid[1][2] == user_char and board.grid[2][2] == 'B':
+            return (2, 2)
 
         # computer to make a non winning or blocking move
 
