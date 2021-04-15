@@ -771,7 +771,7 @@ def main():
 
                 # game button clicked
                 if clicked == "game_button":
-                    gui.show_menu(best_of, pc_player, diff)
+                    gui.show_menu(best_of, pc_player, diff, pc_isX)
 
                 # menu options
 
@@ -931,6 +931,7 @@ def main():
             if G.xWinsCount == best_of or G.oWinsCount == best_of:
                 gui.win_screen(G.currentWinner)
                 G = Game()
+                gamen = False
             # check for draw or winner
             elif G.matchState != 'N':
                 G.reprint()
@@ -969,23 +970,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # test = Board()
-    # i = 0
-    # marker = 'X'
-
-    # try:
-    #     while i < 5:
-    #         row = int(input("enter row: "))
-    #         col = int(input("enter column: "))
-    #         test.place(row,col,marker)
-    #         if marker == 'X':
-    #             marker = 'O'
-    #         else:
-    #             marker = 'X'
-    #         i += 1
-    #         test.print_board()
-    # except:
-    #     print("Enter a valid grid location")
-
     main()
 
