@@ -97,6 +97,10 @@ class Computer_Player:
             if board.grid[0][0] == comp_char and board.grid[2][2] == 'B':
                 #board.grid[2][2] = comp_char
                 return (2, 2)
+            elif board.grid[0][1] == comp_char and board.grid[2][1] == 'B':
+                return (2, 1)
+            elif board.grid[2][1] == comp_char and board.grid[0][1] == 'B':
+                return (0, 1)
             elif board.grid[2][2] == comp_char and board.grid[0][0] == 'B':
                 #board.grid[0][0] = comp_char
                 return (0, 0)
@@ -157,6 +161,10 @@ class Computer_Player:
             elif board.grid[2][2] == user_char and board.grid[0][0] == 'B':
                 #board.grid[0][0] = comp_char
                 return (0, 0)
+            elif board.grid[0][1] == comp_char and board.grid[2][1] == 'B':
+                return (2, 1)
+            elif board.grid[2][1] == comp_char and board.grid[0][1] == 'B':
+                return (0, 1)
             elif board.grid[0][2] == user_char and board.grid[2][0] == 'B':
                 #board.grid[2][0] = comp_char
                 return (2, 0)
