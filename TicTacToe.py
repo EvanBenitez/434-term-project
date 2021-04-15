@@ -117,7 +117,7 @@ class Computer_Player:
             return (1, 1)
         elif board.grid[0][0] == comp_char and board.grid[2][0] == comp_char and board.grid[1][0] == 'B':
             #board.grid[1][1] = comp_char
-            return (1, 1)
+            return (1, 0)
         elif board.grid[0][1] == comp_char and board.grid[2][1] == comp_char and board.grid[1][1] == 'B':
             #board.grid[1][1] = comp_char
             return (1, 1)
@@ -177,7 +177,7 @@ class Computer_Player:
             return (1, 1)
         elif board.grid[0][0] == user_char and board.grid[2][0] == user_char and board.grid[1][0] == 'B':
            # board.grid[1][1] = comp_char
-            return (1, 1)
+            return (1, 0)
         elif board.grid[0][1] == user_char and board.grid[2][1] == user_char and board.grid[1][1] == 'B':
             #board.grid[1][1] = comp_char
             return (1, 1)
