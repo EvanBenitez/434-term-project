@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Fri Mar 12 13:10:18 2021
@@ -416,8 +417,8 @@ class GUI:
         self.text_X_location = (250, 25)
 
         # create text for Y label
-        self.text_Y = self.label_font.render('Y', True, self.draw_color)
-        self.text_Y_location = (500, 25)
+        self.text_O = self.label_font.render('O', True, self.draw_color)
+        self.text_O_location = (500, 25)
 
         # create menu options labels
         self.NewGame = font.render('New game', True, self.line_color)
@@ -544,7 +545,7 @@ class GUI:
 
         # print X and O label
         self.screen.blit(self.text_X, self.text_X_location)
-        self.screen.blit(self.text_Y, self.text_Y_location)
+        self.screen.blit(self.text_O, self.text_O_location)
         self.screen.blit(self.text_Xwins, self.text_Xwins_location)
         self.screen.blit(self.text_Ywins, self.text_Ywins_location)
 
