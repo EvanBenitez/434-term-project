@@ -178,6 +178,10 @@ class Computer_Player:
             return (1, 1)
         elif board.grid[2][2] == 'B' and board.grid[1][2] == user_char and board.grid[2][1] == user_char:
             return (2, 2)
+        elif board.grid[0][2] == 'B' and board.grid[0][0] == user_char and board.grid[1][2] == user_char:
+            return (0, 2)
+        elif board.grid[0][0] == 'B' and board.grid[0][2] == user_char and board.grid[1][0] == user_char:
+            return (0, 0)
         elif board.grid[1][2] == 'B' and board.grid[1][0] == user_char and board.grid[0][2] == user_char:
             return (1, 2)
         elif board.grid[1][0] == 'B' and board.grid[0][0] == user_char and board.grid[2][2] == user_char and board.grid[1][1] == comp_char:
