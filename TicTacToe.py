@@ -200,6 +200,10 @@ class Computer_Player:
             return (0, 2)
 
         # computer to make a non winning or blocking move
+        elif board.grid[2][2] == 'B' and board.grid[1][2] == user_char and board.grid[0][0] == 'B':
+            return (2, 2)
+        elif board.grid[2][2] == 'B' and board.grid[2][1] == user_char and board.grid[0][0] == 'B':
+            return (2, 2)
         elif board.grid[1][1] == 'B' and board.grid[1][0] == user_char and board.grid[0][1] == user_char:
             return (1, 1)
         elif board.grid[1][1] == 'B' and board.grid[1][0] == user_char and board.grid[2][1] == user_char:
