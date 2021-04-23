@@ -56,7 +56,6 @@ class Computer_Player:
             i = random.randrange(0, 3)
             j = random.randrange(0, 3)
             if board.grid[i][j] == 'B':
-                #board.grid[i][j] = comp_char
                 turn = False
                 return (i, j)
 
@@ -70,61 +69,44 @@ class Computer_Player:
         else:
             user_char = 'X'
             
-        # computer to check if it can win, if can win, wins
+        # computer checks it it can win, if it can win, wins
         if board.grid[0][0] == comp_char and board.grid[0][2] == comp_char and board.grid[0][1] == 'B':
-            #board.grid[0][1] = comp_char
             return (0, 1)
         elif board.grid[1][0] == comp_char and board.grid[1][2] == comp_char and board.grid[1][1] == 'B':
-            ##board.grid[2][1] = comp_char
             return (1, 1)
         elif board.grid[0][0] == comp_char and board.grid[0][1] == comp_char and board.grid[0][2] == 'B':
-            board.grid[0][2] = comp_char
             return (0, 2)
         elif board.grid[1][0] == comp_char and board.grid[1][1] == comp_char and board.grid[1][2] == 'B':
-            #board.grid[1][2] = comp_char
             return (1, 2)
         elif board.grid[2][0] == comp_char and board.grid[2][1] == comp_char and board.grid[2][2] == 'B':
-            #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[0][1] == comp_char and board.grid[0][2] == comp_char and board.grid[0][0] == 'B':
-            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[1][1] == comp_char and board.grid[1][2] == comp_char and board.grid[1][0] == 'B':
-            #board.grid[1][0] = comp_char
             return (1, 0)
         elif board.grid[2][1] == comp_char and board.grid[2][2] == comp_char and board.grid[2][0] == 'B':
-            #board.grid[2][0] = comp_char
             return (2, 0)
         elif board.grid[1][1] == comp_char and board.grid[0][0] == comp_char and board.grid[2][2] == 'B':
-            #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[1][1] == comp_char and board.grid[0][1] == comp_char and board.grid[2][1] == 'B':
             return (2, 1)
         elif board.grid[1][1] == comp_char and board.grid[2][1] == comp_char and board.grid[0][1] == 'B':
             return (0, 1)
         elif board.grid[1][1] == comp_char and board.grid[2][2] == comp_char and board.grid[0][0] == 'B':
-            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[1][1] == comp_char and board.grid[0][2] == comp_char and board.grid[2][0] == 'B':
-            #board.grid[2][0] = comp_char
             return (2, 0)
         elif board.grid[1][1] == comp_char and board.grid[2][0] == comp_char and board.grid[0][2] == 'B':
-            #board.grid[0][2] = comp_char
             return (0, 2)
         elif board.grid[0][0] == comp_char and board.grid[2][2] == comp_char and board.grid[1][1] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == comp_char and board.grid[2][0] == comp_char and board.grid[1][1] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][0] == comp_char and board.grid[2][0] == comp_char and board.grid[1][0] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 0)
         elif board.grid[0][1] == comp_char and board.grid[2][1] == comp_char and board.grid[1][1] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == comp_char and board.grid[2][2] == comp_char and board.grid[1][2] == 'B':
-            #board.grid[1][2] = comp_char
             return (1, 2)
         elif board.grid[0][2] == comp_char and board.grid[1][2] == comp_char and board.grid[2][2] == 'B':
             return (2, 2)
@@ -133,64 +115,46 @@ class Computer_Player:
         elif board.grid[2][2] == user_char and board.grid[1][2] == user_char and board.grid[0][2] == 'B':
             return (0, 2)
 
-        # computer to check if user can win, if can win, blocks user
+        # computer checks if the user can win, if user can win, blocks them
         elif board.grid[0][0] == user_char and board.grid[0][2] == user_char and board.grid[0][1] == 'B':
-            #board.grid[0][1] = comp_char
             return (0, 1)
         elif board.grid[1][0] == user_char and board.grid[1][2] == user_char and board.grid[1][1] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[2][0] == user_char and board.grid[2][2] == user_char and board.grid[2][1] == 'B':
-            #board.grid[2][1] = comp_char
             return (2, 1)
         elif board.grid[0][0] == user_char and board.grid[0][1] == user_char and board.grid[0][2] == 'B':
-            #board.grid[0][2] = comp_char
             return (0, 2)
         elif board.grid[1][0] == user_char and board.grid[1][1] == user_char and board.grid[1][2] == 'B':
-            #board.grid[1][2] = comp_char
             return (1, 2)
         elif board.grid[2][0] == user_char and board.grid[2][1] == user_char and board.grid[2][2] == 'B':
-           #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[0][1] == user_char and board.grid[0][2] == user_char and board.grid[0][0] == 'B':
-            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[1][1] == user_char and board.grid[1][2] == user_char and board.grid[1][0] == 'B':
-            #board.grid[1][0] = comp_char
             return (1, 0)
         elif board.grid[2][1] == user_char and board.grid[2][2] == user_char and board.grid[2][0] == 'B':
-            #board.grid[2][0] = comp_char
             return (2, 0)
         elif board.grid[1][1] == user_char and board.grid[0][0] == user_char and board.grid[2][2] == 'B':
-            #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[1][1] == user_char and board.grid[2][2] == user_char and board.grid[0][0] == 'B':
-            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[1][1] == user_char and board.grid[0][1] == user_char and board.grid[2][1] == 'B':
             return (2, 1)
         elif board.grid[1][1] == user_char and board.grid[2][1] == user_char and board.grid[0][1] == 'B':
             return (0, 1)
         elif board.grid[1][1] == user_char and board.grid[0][2] == user_char and board.grid[2][0] == 'B':
-            #board.grid[2][0] = comp_char
             return (2, 0)
         elif board.grid[1][1] == user_char and board.grid[2][0] == user_char and board.grid[0][2] == 'B':
-            #board.grid[0][2] = comp_char
             return (0, 2)
         elif board.grid[0][0] == user_char and board.grid[2][2] == user_char and board.grid[1][1] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == user_char and board.grid[2][0] == user_char and board.grid[1][1] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][0] == user_char and board.grid[2][0] == user_char and board.grid[1][0] == 'B':
-           # board.grid[1][1] = comp_char
             return (1, 0)
         elif board.grid[0][1] == user_char and board.grid[2][1] == user_char and board.grid[1][1] == 'B':
-            #board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][2] == user_char and board.grid[2][2] == user_char and board.grid[1][2] == 'B':
-            #board.grid[1][2] = comp_char
             return (1, 2)
         elif board.grid[0][2] == user_char and board.grid[1][2] == user_char and board.grid[2][2] == 'B':
             return (2, 2)
@@ -199,7 +163,7 @@ class Computer_Player:
         elif board.grid[2][2] == user_char and board.grid[1][2] == user_char and board.grid[0][2] == 'B':
             return (0, 2)
 
-        # computer to make a non winning or blocking move
+        # computer blocks traps, sets its own traps, and will go in a spot if there are no traps
         elif board.grid[2][2] == 'B' and board.grid[1][2] == user_char and board.grid[0][0] == 'B':
             return (2, 2)
         elif board.grid[2][2] == 'B' and board.grid[2][1] == user_char and board.grid[0][0] == 'B':
@@ -221,33 +185,24 @@ class Computer_Player:
         elif board.grid[1][0] == 'B' and board.grid[0][2] == user_char and board.grid[2][0] == user_char and board.grid[1][1] == comp_char:
             return (1, 0)
         elif board.grid[0][0] == 'B' and board.grid[0][2] == 'B' and board.grid[2][2] == 'B' and board.grid[2][0] == 'B':
-            #board.grid[0][0] = comp_char
             return (0, 0)
         elif board.grid[2][2] == 'B' and board.grid[0][0] == comp_char and board.grid[1][1] == user_char:
             return (2, 2)
         elif board.grid[0][2] == 'B' and board.grid[0][0] == comp_char and board.grid[1][0] == user_char and board.grid[1][1] == 'B' and board.grid[2][0] == 'B':
-            #board.grid[2][0] = comp_char
             return (0, 2)
         elif board.grid[2][0] == 'B' and board.grid[0][0] == comp_char and board.grid[0][1] == user_char and board.grid[1][1] == 'B' and board.grid[0][2] == 'B':
-           # board.grid[0][2] = comp_char
             return (2, 0)
         elif board.grid[2][2] == 'B' and board.grid[2][0] == comp_char and board.grid[0][2] == 'B' and board.grid[2][1] == 'B':
-            #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[2][2] == 'B' and board.grid[0][2] == comp_char and board.grid[0][0] == comp_char:
-            #board.grid[2][2] = comp_char
             return (2, 2)
         elif board.grid[1][1] == 'B' and board.grid[0][0] == user_char and board.grid[0][2] == 'B' and board.grid[2][0] == 'B' and board.grid[2][2] == 'B':
-            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[1][1] == 'B' and board.grid[2][0] == user_char and board.grid[0][2] == 'B' and board.grid[0][0] == 'B' and board.grid[2][2] == 'B':
-            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[1][1] == 'B' and board.grid[2][2] == user_char and board.grid[0][2] == 'B' and board.grid[2][0] == 'B' and board.grid[0][0] == 'B':
-            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[1][1] == 'B' and board.grid[0][2] == user_char and board.grid[0][0] == 'B' and board.grid[2][0] == 'B' and board.grid[2][2] == 'B':
-            #board.grid[1][1] == comp_char
             return (1, 1)
         elif board.grid[2][0] == 'B':
             return (2, 0)
@@ -256,24 +211,17 @@ class Computer_Player:
         elif board.grid[2][2] == 'B':
             return (2, 2)
         elif board.grid[1][1] == 'B':
-           # board.grid[1][1] = comp_char
             return (1, 1)
         elif board.grid[0][1] == 'B':
-            #board.grid[0][1] = comp_char
             return (0, 1)
         elif board.grid[1][0] == 'B':
-            #board.grid[1][0] = comp_char
             return (1, 0)
         elif board.grid[2][1] == 'B':
-           # board.grid[2][1] = comp_char
             return (2, 1)
         elif board.grid[1][2] == 'B':
-            #board.grid[1][2] = comp_char
             return (1, 2)
 
-        # class element for Game element
-
-
+# class element for Game element
 class Game:
 
     def __init__(self):
